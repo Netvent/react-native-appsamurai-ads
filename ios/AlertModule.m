@@ -1,5 +1,5 @@
 //
-//  CalendarManager.m
+//  AlertModule.m
 //  RNBridgeTest
 //
 //  Created by Olcay Ay on 1.07.2019.
@@ -7,34 +7,47 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CalendarManager.h"
+#import "AlertModule.h"
 #import <React/RCTLog.h>
 
-@implementation CalendarManager
+@implementation AlertModule
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location)
-{
-  RCTLogInfo(@"RCTLog: Pretending to create an event %@ at %@", name, location);
-  NSLog(@"NSLOG: Pretending to create an event %@ at %@", name, location);
-  
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Do you want to say hello?"
-                                                  message:@"More info..."
-                                                 delegate:self
-                                        cancelButtonTitle:@"Cancel"
-                                        otherButtonTitles:@"Say Hello",nil];
-  [alert show];
-}
+// public void showAlert(String title, String message, String positiveBtnText, String negativeBtnText, Callback onPositiveCallback, Callback onNegativeCallback) {
 
-RCT_EXPORT_METHOD(showAlert:(NSString *)title message:(NSString *)message  positiveBtnText:(NSString *)positiveBtnText  negativeBtnText:(NSString *)negativeBtnText )
+RCT_EXPORT_METHOD(
+                  showAlert:(NSString *)title
+                  message:(NSString *)message
+                  positiveBtnText:(NSString *)positiveBtnText
+                  negativeBtnText:(NSString *)negativeBtnText
+                  onPositiveCallback:(RCTResponseSenderBlock)onPositiveCallback
+                  onNegativeCallback:(RCTResponseSenderBlock)onNegativeCallback )
 {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                  message:message
-                                                 delegate:self
-                                        cancelButtonTitle:negativeBtnText
-                                        otherButtonTitles:positiveBtnText,nil];
-  [alert show];
+//  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+//                                                  message:message
+//                                                 delegate:self
+//                                        cancelButtonTitle:negativeBtnText
+//                                        otherButtonTitles:positiveBtnText,nil];
+//  [alert show];
+  UIAlertController *alertController = [UIAlertController
+                                        alertControllerWithTitle: title message:message preferredStyle: UIAlertControllerStyleAlert];
+  
+  UIAlertAction *okAction = [UIAlertAction actionWithTitle: positiveBtnText style: UIAlertActionStyleDefault handler: ^(UIAlertAction *action)
+                             {
+                               onPositiveCallback(@[[NSNull null]]);
+                             }];
+  [alertController addAction: okAction];
+  
+  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle: negativeBtnText style: UIAlertActionStyleDefault handler: ^(UIAlertAction *action)
+                                 {
+                                   onNegativeCallback(@[[NSNull null]]);
+                                 }];
+  [alertController addAction: cancelAction];
+  
+  UIViewController *root = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+
+  [root presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

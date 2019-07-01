@@ -44,20 +44,25 @@ export default class App extends Component<{}> {
       platform = 'iOS'
     }
     this.setLog(`OS type is ${platform}`);
-    this.showMessage()
+    this.showAlert()
   }
 
   setLog(log){
     this.setState({
       log: log
     })
+
+    console.log(log)
   }
 
-  showMessage = () => {
-    if ( Platform.OS === 'android' ) {
-      NativeModules.ToastExample.show('Awesome', NativeModules.ToastExample.SHORT);
-    } else if (Platform.OS === 'ios') {
-    }
+  showAlert = () => {
+    NativeModules.AlertModule.showAlert('Alert', 'Are you sure?', 'Yes', 'No', 
+    () => {
+      this.setLog(`Pressed Yes`);
+    }, 
+    () => {
+      this.setLog(`Pressed No`);
+    });
   }
 }
 
