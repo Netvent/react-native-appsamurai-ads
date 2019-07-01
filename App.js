@@ -25,7 +25,7 @@ export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>React Native Bridge Test App!</Text>
+        <Text style={styles.welcome}>Hello React Native!!!!</Text>
         <Button
           onPress={this.onPress}
           title="Press Me"
@@ -43,7 +43,6 @@ export default class App extends Component<{}> {
     } else if (Platform.OS === 'ios') {
       platform = 'iOS'
     }
-    this.setLog(`OS type is ${platform}`);
     this.showAlert()
   }
 
@@ -56,7 +55,9 @@ export default class App extends Component<{}> {
   }
 
   showAlert = () => {
-    NativeModules.AlertModule.showAlert('Alert', 'Are you sure?', 'Yes', 'No', 
+    this.setLog(`Showing alert view`);
+
+    NativeModules.Alert.show('Alert', 'Are you sure?', 'Yes', 'No', 
     () => {
       this.setLog(`Pressed Yes`);
     }, 
