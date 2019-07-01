@@ -25,7 +25,7 @@ export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Hello React Native!!!!</Text>
+        <Text style={styles.welcome}>React Native Test Bridge</Text>
         <Button
           onPress={this.onPress}
           title="Press Me"
