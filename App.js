@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import {NativeModules} from 'react-native';
+import AppSamuraiInterstitial from './RNAppSamuraiInterstitial';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -22,6 +23,44 @@ export default class App extends Component<{}> {
     log: ""
   };
 
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+    AppSamuraiInterstitial.removeAllListeners();
+  }
+
+  showInterstitial = () => {
+    AppSamuraiInterstitial.showAd();
+  }
+
+  loadInterstitial = () => {
+    var adUnitIDs = {
+      "1": 'ca-app-pub-3940256099942544/1033173712',
+      "0": 'appsamurai-sample-android-interstitial-ad-id'
+    }
+    AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
+    AppSamuraiInterstitial.addEventListener('adLoaded',
+      () => this.setLog('AppSamuraiInterstitial adLoaded')
+    );
+    AppSamuraiInterstitial.addEventListener('adFailedToLoad',
+      () => this.setLog('AppSamuraiInterstitial adFailedToLoad')
+    );
+    AppSamuraiInterstitial.addEventListener('adOpened',
+      () => this.setLog('AppSamuraiInterstitial adOpened')
+    );
+    AppSamuraiInterstitial.addEventListener('adClosed',
+      () => this.setLog('AppSamuraiInterstitial adClosed')
+    );
+    AppSamuraiInterstitial.addEventListener('adLeftApplication',
+      () => this.setLog('AppSamuraiInterstitial adLeftApplication')
+    );
+
+
+    AppSamuraiInterstitial.requestAd().catch(error => console.warn(error));
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,6 +68,16 @@ export default class App extends Component<{}> {
         <Button
           onPress={this.onPress}
           title="Press Me"
+          color="#841584"
+        />
+        <Button
+          onPress={this.loadInterstitial}
+          title="Load Interstitial Ad"
+          color="#841584"
+        />
+        <Button
+          onPress={this.showInterstitial}
+          title="Show Interstitial Ad"
           color="#841584"
         />
         <Text style={styles.instructions}>{this.state.log}</Text>
@@ -52,6 +101,20 @@ export default class App extends Component<{}> {
     })
 
     console.log(log)
+  }
+
+  loadAd = () => {
+    this.setLog("Load ad pressed");
+    if ( Platform.OS === 'android' ) {
+      this.loadInterstitial()
+    }
+  }
+
+  showAd = () => {
+    this.setLog("Show ad pressed");    
+    if ( Platform.OS === 'android' ) {
+      this.showInterstitial()
+    }
   }
 
   showAlert = () => {

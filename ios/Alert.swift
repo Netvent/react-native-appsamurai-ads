@@ -15,11 +15,11 @@ class Alert: NSObject {
   @objc
   func show(
     _ title: String,
-    message message:String,
-    positiveBtnText positiveBtnText:String,
-    negativeBtnText negativeBtnText:String,
-    onPositiveCallback onPositiveCallback: @escaping RCTResponseSenderBlock ,
-    onNegativeCallback onNegativeCallback: @escaping RCTResponseSenderBlock ){
+    message:String,
+    positiveBtnText:String,
+    negativeBtnText:String,
+    onPositiveCallback: @escaping RCTResponseSenderBlock ,
+    onNegativeCallback: @escaping RCTResponseSenderBlock ){
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     let positiveAction = UIAlertAction(title: positiveBtnText, style: .default) { (action:UIAlertAction) in
       onPositiveCallback([NSNull()])
@@ -35,7 +35,6 @@ class Alert: NSObject {
     let rootViewController = UIApplication.shared.keyWindow!.rootViewController
 
     rootViewController?.present(alertController, animated: true, completion: nil)
-
   }
 
   @objc
