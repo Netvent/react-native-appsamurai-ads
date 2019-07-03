@@ -3,16 +3,19 @@ import {
   NativeEventEmitter,
 } from 'react-native';
 
-const AppSamuraiInterstitial = NativeModules.RNAppSamuraiInterstitial;
+const AppSamuraiRewarded = NativeModules.RNAppSamuraiRewarded;
 
-const eventEmitter = new NativeEventEmitter(AppSamuraiInterstitial);
+const eventEmitter = new NativeEventEmitter(AppSamuraiRewarded);
 
 const eventMap = {
-  adLoaded: 'interstitialAdLoaded',
-  adFailedToLoad: 'interstitialAdFailedToLoad',
-  adOpened: 'interstitialAdOpened',
-  adClosed: 'interstitialAdClosed',
-  adLeftApplication: 'interstitialAdLeftApplication',
+  adLoaded: 'rewardedVideoAdLoaded',
+  adFailedToLoad: 'rewardedVideoAdFailedToLoad',
+  adOpened: 'rewardedVideoAdOpened',
+  adClosed: 'rewardedVideoAdClosed',
+  adLeftApplication: 'rewardedVideoAdLeftApplication',
+  rewarded: 'rewardedVideoAdRewarded',
+  videoStarted: 'rewardedVideoAdVideoStarted',
+  videoCompleted: 'rewardedVideoAdVideoCompleted',
 };
 
 const _subscriptions = new Map();
@@ -55,7 +58,7 @@ const removeAllListeners = () => {
 };
 
 export default {
-  ...AppSamuraiInterstitial,
+  ...AppSamuraiRewarded,
   addEventListener,
   removeEventListener,
   removeAllListeners,

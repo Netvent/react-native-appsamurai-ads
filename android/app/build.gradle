@@ -148,8 +148,8 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-ads:17.2.1'
     implementation 'com.appsamurai.adsdk:core:1.4.0'
-    implementation('com.appsamurai.adsdk:waterfall:0.1.2-ga') {
-//    implementation('com.appsamurai.adsdk:waterfall:0.1.2-as') {
+//    implementation('com.appsamurai.adsdk:waterfall:0.1.2-ga') {
+    implementation('com.appsamurai.adsdk:waterfall:0.1.2-as') {
         exclude module: 'core'
     }
 }

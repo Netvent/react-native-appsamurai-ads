@@ -6,7 +6,6 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
 
 import java.util.ArrayList
-import java.util.Collections
 
 class RNAppSamuraiPackage : ReactPackage {
 
@@ -19,6 +18,7 @@ class RNAppSamuraiPackage : ReactPackage {
         val modules = ArrayList<NativeModule>()
 
         modules.add(RNAppSamuraiInterstitialAdModule(reactContext))
+        modules.add(RNAdMobRewardedVideoAdModule(reactContext))
 
         return modules
     }

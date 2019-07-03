@@ -10,13 +10,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import {NativeModules} from 'react-native';
 import AppSamuraiInterstitial from './RNAppSamuraiInterstitial';
+import AppSamuraiRewarded from './RNAppSamuraiRewarded';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 export default class App extends Component<{}> {
   state = { 
@@ -28,6 +23,7 @@ export default class App extends Component<{}> {
 
   componentWillUnmount() {
     AppSamuraiInterstitial.removeAllListeners();
+    AppSamuraiRewarded.removeAllListeners();
   }
 
   showInterstitial = () => {
@@ -56,8 +52,36 @@ export default class App extends Component<{}> {
       () => this.setLog('AppSamuraiInterstitial adLeftApplication')
     );
 
-
     AppSamuraiInterstitial.requestAd().catch(error => console.warn(error));
+  }
+
+  showRewarded = () => {
+    AppSamuraiRewarded.showAd();
+  }
+
+  loadRewarded = () => {
+    var adUnitIDs = {
+      "1": 'ca-app-pub-3940256099942544/5224354917',
+      "0": 'appsamurai-sample-android-rewardbasedvideo-ad-id'
+    }
+    AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
+    AppSamuraiRewarded.addEventListener('adLoaded',
+      () => this.setLog('AppSamuraiRewarded adLoaded')
+    );
+    AppSamuraiRewarded.addEventListener('adFailedToLoad',
+      () => this.setLog('AppSamuraiRewarded adFailedToLoad')
+    );
+    AppSamuraiRewarded.addEventListener('adOpened',
+      () => this.setLog('AppSamuraiRewarded adOpened')
+    );
+    AppSamuraiRewarded.addEventListener('adClosed',
+      () => this.setLog('AppSamuraiRewarded adClosed')
+    );
+    AppSamuraiRewarded.addEventListener('adLeftApplication',
+      () => this.setLog('AppSamuraiRewarded adLeftApplication')
+    );
+
+    AppSamuraiRewarded.requestAd().catch(error => console.warn(error));
   }
 
 
@@ -78,6 +102,16 @@ export default class App extends Component<{}> {
         <Button
           onPress={this.showInterstitial}
           title="Show Interstitial Ad"
+          color="#841584"
+        />
+        <Button
+          onPress={this.loadRewarded}
+          title="Load Rewarded Ad"
+          color="#841584"
+        />
+        <Button
+          onPress={this.showRewarded}
+          title="Show Rewarded Ad"
           color="#841584"
         />
         <Text style={styles.instructions}>{this.state.log}</Text>

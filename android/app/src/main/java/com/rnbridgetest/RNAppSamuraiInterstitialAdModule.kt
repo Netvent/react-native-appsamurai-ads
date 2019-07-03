@@ -38,10 +38,10 @@ class RNAppSamuraiInterstitialAdModule(reactContext: ReactApplicationContext) : 
 
 
     private var mInterstitialAd: InterstitialAd? = null
-    private var testDevices: ArrayList<String>? = null
 
-    private var mRequestAdPromise: Promise? = null
     private var adUnitIDs = HashMap<AdNetwork, String>()
+    private var testDevices: ArrayList<String>? = null
+    private var mRequestAdPromise: Promise? = null
 
     override fun getName(): String {
         return REACT_CLASS
@@ -113,8 +113,8 @@ class RNAppSamuraiInterstitialAdModule(reactContext: ReactApplicationContext) : 
                     }
                 }
                 val adRequest = adRequestBuilder.build()
-                mInterstitialAd!!.adUnitIds = adUnitIDs
-                mInterstitialAd!!.loadAd(adRequest)
+                mInterstitialAd?.adUnitIds = adUnitIDs
+                mInterstitialAd?.loadAd(adRequest)
             }
         }
     }
