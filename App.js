@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import {NativeModules} from 'react-native';
 import AppSamuraiInterstitial from './RNAppSamuraiInterstitial';
 import AppSamuraiRewarded from './RNAppSamuraiRewarded';
+import AppSamuraiBanner from './RNAppSamuraiBanner';
 
 
 export default class App extends Component<{}> {
@@ -84,6 +85,9 @@ export default class App extends Component<{}> {
     AppSamuraiRewarded.requestAd().catch(error => console.warn(error));
   }
 
+  loadBanner = () => {
+
+  }
 
   render() {
     return (
@@ -114,6 +118,15 @@ export default class App extends Component<{}> {
           title="Show Rewarded Ad"
           color="#841584"
         />
+        <Button
+          title="Reload"
+          onPress={this.loadBanner}
+          />
+        <AppSamuraiBanner
+          adSize="banner"
+          adUnitID="ca-app-pub-3940256099942544/6300978111"
+        />
+
         <Text style={styles.instructions}>{this.state.log}</Text>
       </View>
     );
