@@ -1,25 +1,26 @@
 package com.rnbridgetest;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
+import com.appsamurai.ads.common.AdSize;
+import com.appsamurai.ads.data.AdNetwork;
+import com.appsamurai.waterfall.ad.BannerAd;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableNativeArray;
 import com.facebook.react.common.MapBuilder;
-import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.views.view.ReactViewGroup;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,57 +28,60 @@ import java.util.Map;
 
 class ReactAdView extends ReactViewGroup {
 
-    protected AdView adView;
+//    protected AdView adView;
+    protected BannerAd mBannerAd;
 
     String adUnitID;
     String[] testDevices;
     AdSize adSize;
+    LinearLayout adContainer;
 
     public ReactAdView(final Context context) {
         super(context);
         this.createAdView();
     }
 
-    private void createAdView() {
-        if (this.adView != null) this.adView.destroy();
+    private void createContainer(final Context context) {
+        adContainer = new LinearLayout(context);
+        LinearLayout.LayoutParams params  = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+//        params.gravity = Gravity.CENTER_HORIZONTAL;
+        adContainer.setLayoutParams(params);
+        adContainer.setBackgroundColor(Color.CYAN);
+        adContainer.setOrientation(LinearLayout.VERTICAL);
+    }
 
+    private void createAdView() {
         final Context context = getContext();
-        this.adView = new AdView(context);
-        this.adView.setAdListener(new AdListener() {
+
+        this.createContainer(context);
+        mBannerAd = new BannerAd(context, adContainer);
+        mBannerAd.setAdListener(new com.appsamurai.ads.common.AdListener() {
             @Override
-            public void onAdLoaded() {
-                int width = adView.getAdSize().getWidthInPixels(context);
-                int height = adView.getAdSize().getHeightInPixels(context);
-                int left = adView.getLeft();
-                int top = adView.getTop();
-                adView.measure(width, height);
-                adView.layout(left, top, left + width, top + height);
-                sendOnSizeChangeEvent();
-                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_LOADED, null);
+            public void onAdClosed() {
+                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_CLOSED, null);
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                String errorMessage = "Unknown error";
-                switch (errorCode) {
-                    case AdRequest.ERROR_CODE_INTERNAL_ERROR:
-                        errorMessage = "Internal error, an invalid response was received from the ad server.";
-                        break;
-                    case AdRequest.ERROR_CODE_INVALID_REQUEST:
-                        errorMessage = "Invalid ad request, possibly an incorrect ad unit ID was given.";
-                        break;
-                    case AdRequest.ERROR_CODE_NETWORK_ERROR:
-                        errorMessage = "The ad request was unsuccessful due to network connectivity.";
-                        break;
-                    case AdRequest.ERROR_CODE_NO_FILL:
-                        errorMessage = "The ad request was successful, but no ad was returned due to lack of ad inventory.";
-                        break;
-                }
-                WritableMap event = Arguments.createMap();
-                WritableMap error = Arguments.createMap();
-                error.putString("message", errorMessage);
-                event.putMap("error", error);
-                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_FAILED_TO_LOAD, event);
+            public void onAdFailedToLoad(int n) {
+                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_FAILED_TO_LOAD, null);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_LEFT_APPLICATION, null);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_LOADED, null);
+                int width = 960; //mBannerAd.getAdSize().getWidth();
+                int height = 150; //mBannerAd.getAdSize().getHeight();
+                int left = 0;
+                int top = 0;
+                adContainer.measure(width, height);
+                adContainer.layout(left, top, left + width, top + height);
+                sendOnSizeChangeEvent();
+                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_LOADED, null);
             }
 
             @Override
@@ -86,16 +90,16 @@ class ReactAdView extends ReactViewGroup {
             }
 
             @Override
-            public void onAdClosed() {
-                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_CLOSED, null);
+            public void onAdExpanded() {
+                super.onAdExpanded();
             }
 
             @Override
-            public void onAdLeftApplication() {
-                sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_LEFT_APPLICATION, null);
+            public void onAdCollapsed() {
+                super.onAdCollapsed();
             }
         });
-        this.addView(this.adView);
+        this.addView(this.adContainer);
     }
 
     private void sendOnSizeChangeEvent() {
@@ -103,14 +107,8 @@ class ReactAdView extends ReactViewGroup {
         int height;
         ReactContext reactContext = (ReactContext) getContext();
         WritableMap event = Arguments.createMap();
-        AdSize adSize = this.adView.getAdSize();
-        if (this.adSize == AdSize.SMART_BANNER) {
-            width = (int) PixelUtil.toDIPFromPixel(adSize.getWidthInPixels(reactContext));
-            height = (int) PixelUtil.toDIPFromPixel(adSize.getHeightInPixels(reactContext));
-        } else {
-            width = adSize.getWidth();
-            height = adSize.getHeight();
-        }
+        width = adSize.getWidth();
+        height = adSize.getHeight();
         event.putDouble("width", width);
         event.putDouble("height", height);
         sendEvent(RNAppSamuraiBannerViewManager.EVENT_SIZE_CHANGE, event);
@@ -125,18 +123,20 @@ class ReactAdView extends ReactViewGroup {
     }
 
     public void loadBanner() {
-        AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
-        if (testDevices != null) {
-            for (int i = 0; i < testDevices.length; i++) {
-                String testDevice = testDevices[i];
-                if (testDevice == "SIMULATOR") {
-                    testDevice = AdRequest.DEVICE_ID_EMULATOR;
-                }
-                adRequestBuilder.addTestDevice(testDevice);
-            }
-        }
-        AdRequest adRequest = adRequestBuilder.build();
-        this.adView.loadAd(adRequest);
+//            AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+//            if (testDevices != null) {
+//                for (int i = 0; i < testDevices.length; i++) {
+//                    String testDevice = testDevices[i];
+//                    if (testDevice == "SIMULATOR") {
+//                        testDevice = AdRequest.DEVICE_ID_EMULATOR;
+//                    }
+//                    adRequestBuilder.addTestDevice(testDevice);
+//                }
+//            }
+//            AdRequest adRequest = adRequestBuilder.build();
+//            this.adView.loadAd(adRequest);
+
+            this.mBannerAd.loadAd(new com.appsamurai.ads.common.AdRequest.Builder().addTestDevice("YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==").build());
     }
 
     public void setAdUnitID(String adUnitID) {
@@ -146,7 +146,11 @@ class ReactAdView extends ReactViewGroup {
             this.createAdView();
         }
         this.adUnitID = adUnitID;
-        this.adView.setAdUnitId(adUnitID);
+
+        HashMap<AdNetwork, String> map = new HashMap<>();
+//        map.put(AdNetwork.GOOGLE, adUnitID);
+        map.put(AdNetwork.APPSAMURAI, adUnitID);
+        this.mBannerAd.setAdUnitIds(map);
     }
 
     public void setTestDevices(String[] testDevices) {
@@ -155,7 +159,8 @@ class ReactAdView extends ReactViewGroup {
 
     public void setAdSize(AdSize adSize) {
         this.adSize = adSize;
-        this.adView.setAdSize(adSize);
+
+        this.mBannerAd.setAdSize(adSize);
     }
 }
 
@@ -232,20 +237,8 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
         switch (adSize) {
             case "banner":
                 return AdSize.BANNER;
-            case "largeBanner":
-                return AdSize.LARGE_BANNER;
             case "mediumRectangle":
                 return AdSize.MEDIUM_RECTANGLE;
-            case "fullBanner":
-                return AdSize.FULL_BANNER;
-            case "leaderBoard":
-                return AdSize.LEADERBOARD;
-            case "smartBannerPortrait":
-                return AdSize.SMART_BANNER;
-            case "smartBannerLandscape":
-                return AdSize.SMART_BANNER;
-            case "smartBanner":
-                return AdSize.SMART_BANNER;
             default:
                 return AdSize.BANNER;
         }

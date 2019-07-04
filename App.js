@@ -124,6 +124,9 @@ export default class App extends Component<{}> {
           />
         <AppSamuraiBanner
           adSize="banner"
+          onAdLoaded={() => {
+            this.setLog('AppSamuraiBanner adLoaded')
+          }}
           adUnitID="ca-app-pub-3940256099942544/6300978111"
         />
 
