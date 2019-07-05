@@ -123,7 +123,7 @@ export default class App extends Component<{}> {
           onPress={this.loadBanner}
           />
         <AppSamuraiBanner
-          adSize="banner"
+          adSize="mediumRectangle"
           onAdLoaded={() => {
             this.setLog('AppSamuraiBanner adLoaded')
           }}

@@ -74,8 +74,8 @@ class ReactAdView extends ReactViewGroup {
             @Override
             public void onAdLoaded() {
                 sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_LOADED, null);
-                int width = 960; //mBannerAd.getAdSize().getWidth();
-                int height = 150; //mBannerAd.getAdSize().getHeight();
+                int width = adSize.getWidthInPixels(null);// 960; //mBannerAd.getAdSize().getWidth();
+                int height = adSize.getHeightInPixels(null); // 150; //mBannerAd.getAdSize().getHeight();
                 int left = 0;
                 int top = 0;
                 adContainer.measure(width, height);
