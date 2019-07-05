@@ -12,6 +12,7 @@ import com.appsamurai.ads.data.AdNetwork;
 import com.appsamurai.waterfall.ad.BannerAd;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableNativeArray;
@@ -32,6 +33,7 @@ class ReactAdView extends ReactViewGroup {
     protected BannerAd mBannerAd;
 
     String adUnitID;
+    HashMap<AdNetwork, String> adUnitIDs;
     String[] testDevices;
     AdSize adSize;
     LinearLayout adContainer;
@@ -153,6 +155,11 @@ class ReactAdView extends ReactViewGroup {
         this.mBannerAd.setAdUnitIds(map);
     }
 
+    public void setAdUnitIDs(HashMap<AdNetwork, String> adUnitIDs) {
+        this.adUnitIDs = adUnitIDs;
+        this.mBannerAd.setAdUnitIds(adUnitIDs);
+    }
+
     public void setTestDevices(String[] testDevices) {
         this.testDevices = testDevices;
     }
@@ -170,6 +177,7 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
 
     public static final String PROP_AD_SIZE = "adSize";
     public static final String PROP_AD_UNIT_ID = "adUnitID";
+    public static final String PROP_AD_UNIT_IDS = "adUnitIDs";
     public static final String PROP_TEST_DEVICES = "testDevices";
 
     public static final String EVENT_SIZE_CHANGE = "onSizeChange";
@@ -226,6 +234,14 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
         view.setAdUnitID(adUnitID);
     }
 
+    @ReactProp(name = PROP_AD_UNIT_IDS)
+    public void setPropAdUnitIDs(final ReactAdView view, final ReadableMap adUnitIDs) {
+        Log.d(Utils.INSTANCE.getLOGTAG(), "setPropAdUnitIDs");
+        HashMap<AdNetwork, String> map = convertAdUnitIdMap(adUnitIDs);
+        Log.d(Utils.INSTANCE.getLOGTAG(), "setPropAdUnitIDs : " + map);
+        view.setAdUnitIDs(map);
+    }
+
     @ReactProp(name = PROP_TEST_DEVICES)
     public void setPropTestDevices(final ReactAdView view, final ReadableArray testDevices) {
         ReadableNativeArray nativeArray = (ReadableNativeArray)testDevices;
@@ -257,5 +273,18 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
                 root.loadBanner();
                 break;
         }
+    }
+
+    private HashMap<AdNetwork, String> convertAdUnitIdMap(ReadableMap adUnitIDs) {
+        HashMap<AdNetwork, String> map = new HashMap<>();
+        if (adUnitIDs.hasKey("0")) {
+            map.put(AdNetwork.APPSAMURAI, adUnitIDs.getString("0"));
+        }
+
+        if (adUnitIDs.hasKey("1")) {
+            map.put(AdNetwork.GOOGLE, adUnitIDs.getString("1"));
+        }
+
+        return map;
     }
 }

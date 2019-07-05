@@ -127,7 +127,11 @@ export default class App extends Component<{}> {
           onAdLoaded={() => {
             this.setLog('AppSamuraiBanner adLoaded')
           }}
-          adUnitID="ca-app-pub-3940256099942544/6300978111"
+          adUnitIDs={{
+            "0": "ca-app-pub-3940256099942544/6300978111",
+            "1": "ca-app-pub-3940256099942544/6300978111"
+          }}
+          testDevices={["D2EC5507015ABF5019343FBF0B141C12=", "YXBwc20tNzliNDU5YzVlZWM3NzA4Zg=="]}
         />
 
         <Text style={styles.instructions}>{this.state.log}</Text>

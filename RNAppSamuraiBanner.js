@@ -6,7 +6,7 @@ import {
   findNodeHandle,
   ViewPropTypes,
 } from 'react-native';
-import { string, func, arrayOf } from 'prop-types';
+import { string, func, arrayOf, any } from 'prop-types';
 
 // import { createErrorFromErrorData } from './utils';
 
@@ -84,6 +84,7 @@ AppSamuraiBanner.propTypes = {
    * AdMob ad unit ID
    */
   adUnitID: string,
+  adUnitIDs: any,
 
   /**
    * Array of test devices. Use AdMobBanner.simulatorId for the simulator
