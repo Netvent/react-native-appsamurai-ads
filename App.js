@@ -10,8 +10,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import {NativeModules} from 'react-native';
 import AppSamuraiInterstitial from './RNAppSamuraiInterstitial';
-import AppSamuraiRewarded from './RNAppSamuraiRewarded';
-import AppSamuraiBanner from './RNAppSamuraiBanner';
+// import AppSamuraiRewarded from './RNAppSamuraiRewarded';
+// import AppSamuraiBanner from './RNAppSamuraiBanner';
 
 
 export default class App extends Component<{}> {
@@ -24,7 +24,7 @@ export default class App extends Component<{}> {
 
   componentWillUnmount() {
     AppSamuraiInterstitial.removeAllListeners();
-    AppSamuraiRewarded.removeAllListeners();
+    // AppSamuraiRewarded.removeAllListeners();
   }
 
   showInterstitial = () => {
@@ -33,10 +33,11 @@ export default class App extends Component<{}> {
 
   loadInterstitial = () => {
     var adUnitIDs = {
-      "1": 'ca-app-pub-3940256099942544/1033173712',
+      "1": 'XXca-app-pub-3940256099942544/1033173712',
       "0": 'appsamurai-sample-android-interstitial-ad-id'
     }
-    AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
+    // AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
+    AppSamuraiInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712");
     AppSamuraiInterstitial.addEventListener('adLoaded',
       () => this.setLog('AppSamuraiInterstitial adLoaded')
     );
@@ -57,7 +58,7 @@ export default class App extends Component<{}> {
   }
 
   showRewarded = () => {
-    AppSamuraiRewarded.showAd();
+    // AppSamuraiRewarded.showAd();
   }
 
   loadRewarded = () => {
@@ -65,24 +66,24 @@ export default class App extends Component<{}> {
       "1": 'ca-app-pub-3940256099942544/5224354917',
       "0": 'appsamurai-sample-android-rewardbasedvideo-ad-id'
     }
-    AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
-    AppSamuraiRewarded.addEventListener('adLoaded',
-      () => this.setLog('AppSamuraiRewarded adLoaded')
-    );
-    AppSamuraiRewarded.addEventListener('adFailedToLoad',
-      () => this.setLog('AppSamuraiRewarded adFailedToLoad')
-    );
-    AppSamuraiRewarded.addEventListener('adOpened',
-      () => this.setLog('AppSamuraiRewarded adOpened')
-    );
-    AppSamuraiRewarded.addEventListener('adClosed',
-      () => this.setLog('AppSamuraiRewarded adClosed')
-    );
-    AppSamuraiRewarded.addEventListener('adLeftApplication',
-      () => this.setLog('AppSamuraiRewarded adLeftApplication')
-    );
+    // AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
+    // AppSamuraiRewarded.addEventListener('adLoaded',
+    //   () => this.setLog('AppSamuraiRewarded adLoaded')
+    // );
+    // AppSamuraiRewarded.addEventListener('adFailedToLoad',
+    //   () => this.setLog('AppSamuraiRewarded adFailedToLoad')
+    // );
+    // AppSamuraiRewarded.addEventListener('adOpened',
+    //   () => this.setLog('AppSamuraiRewarded adOpened')
+    // );
+    // AppSamuraiRewarded.addEventListener('adClosed',
+    //   () => this.setLog('AppSamuraiRewarded adClosed')
+    // );
+    // AppSamuraiRewarded.addEventListener('adLeftApplication',
+    //   () => this.setLog('AppSamuraiRewarded adLeftApplication')
+    // );
 
-    AppSamuraiRewarded.requestAd().catch(error => console.warn(error));
+    // AppSamuraiRewarded.requestAd().catch(error => console.warn(error));
   }
 
   loadBanner = () => {
@@ -122,18 +123,6 @@ export default class App extends Component<{}> {
           title="Reload"
           onPress={this.loadBanner}
           />
-        <AppSamuraiBanner
-          adSize="mediumRectangle"
-          onAdLoaded={() => {
-            this.setLog('AppSamuraiBanner adLoaded')
-          }}
-          adUnitIDs={{
-            "0": "ca-app-pub-3940256099942544/6300978111",
-            "1": "ca-app-pub-3940256099942544/6300978111"
-          }}
-          testDevices={["D2EC5507015ABF5019343FBF0B141C12=", "YXBwc20tNzliNDU5YzVlZWM3NzA4Zg=="]}
-        />
-
         <Text style={styles.instructions}>{this.state.log}</Text>
       </View>
     );

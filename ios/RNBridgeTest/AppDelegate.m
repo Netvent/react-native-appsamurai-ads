@@ -11,6 +11,10 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+@import GoogleMobileAds;
+@import AppSamuraiAdSDK;
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -27,6 +31,12 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  
+  [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
+
+  [ASMobileAds initialize:@"gJd-a6vBCfVp0_YgM6df2Q"];
+
   return YES;
 }
 

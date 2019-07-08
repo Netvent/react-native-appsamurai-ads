@@ -236,9 +236,7 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
 
     @ReactProp(name = PROP_AD_UNIT_IDS)
     public void setPropAdUnitIDs(final ReactAdView view, final ReadableMap adUnitIDs) {
-        Log.d(Utils.INSTANCE.getLOGTAG(), "setPropAdUnitIDs");
         HashMap<AdNetwork, String> map = convertAdUnitIdMap(adUnitIDs);
-        Log.d(Utils.INSTANCE.getLOGTAG(), "setPropAdUnitIDs : " + map);
         view.setAdUnitIDs(map);
     }
 

@@ -39,9 +39,12 @@
 		3C51256DD8204673A9A8D7FD /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F75F034A8BA1408E96415301 /* libRNGestureHandler-tvOS.a */; };
 		602FF82608F240899F2F8802 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1A6E9655594D9094D9F643 /* libRNGestureHandler.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8D906F8F17B3FA59E4C3285F /* Pods_RNBridgeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93C383911E35AB49FCB816D /* Pods_RNBridgeTest.framework */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		E0DFC57922CA4CE000127FCD /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57822CA4CE000127FCD /* Alert.m */; };
 		E0DFC57B22CA4D6000127FCD /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57A22CA4D6000127FCD /* Alert.swift */; };
+		E0DFC5B822CF6BFE00127FCD /* RNAppSamuraiInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC5B622CF6BFE00127FCD /* RNAppSamuraiInterstitial.m */; };
+		E0DFC5FC22CF8B0300127FCD /* RNAdMobUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC5FB22CF8B0200127FCD /* RNAdMobUtils.m */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -356,18 +359,25 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RNBridgeTest/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RNBridgeTest/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2B92EC19BDEFAC2B19086060 /* Pods-RNBridgeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNBridgeTest.release.xcconfig"; path = "Target Support Files/Pods-RNBridgeTest/Pods-RNBridgeTest.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* RNBridgeTest-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RNBridgeTest-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* RNBridgeTest-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RNBridgeTest-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		404DA3100E9A8D80C3771A98 /* Pods-RNBridgeTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNBridgeTest.debug.xcconfig"; path = "Target Support Files/Pods-RNBridgeTest/Pods-RNBridgeTest.debug.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60267F81DC9C448E96C5DA63 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9D1A6E9655594D9094D9F643 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		C93C383911E35AB49FCB816D /* Pods_RNBridgeTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RNBridgeTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DFC57522CA400E00127FCD /* RNBridgeTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNBridgeTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		E0DFC57822CA4CE000127FCD /* Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		E0DFC57A22CA4D6000127FCD /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		E0DFC5B622CF6BFE00127FCD /* RNAppSamuraiInterstitial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAppSamuraiInterstitial.m; sourceTree = "<group>"; };
+		E0DFC5B722CF6BFE00127FCD /* RNAppSamuraiInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAppSamuraiInterstitial.h; sourceTree = "<group>"; };
+		E0DFC5D322CF8B0200127FCD /* RNAdMobUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAdMobUtils.h; sourceTree = "<group>"; };
+		E0DFC5FB22CF8B0200127FCD /* RNAdMobUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAdMobUtils.m; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F75F034A8BA1408E96415301 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
@@ -400,6 +410,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				602FF82608F240899F2F8802 /* libRNGestureHandler.a in Frameworks */,
+				8D906F8F17B3FA59E4C3285F /* Pods_RNBridgeTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +534,10 @@
 				E0DFC57822CA4CE000127FCD /* Alert.m */,
 				E0DFC57A22CA4D6000127FCD /* Alert.swift */,
 				E0DFC57522CA400E00127FCD /* RNBridgeTest-Bridging-Header.h */,
+				E0DFC5B722CF6BFE00127FCD /* RNAppSamuraiInterstitial.h */,
+				E0DFC5B622CF6BFE00127FCD /* RNAppSamuraiInterstitial.m */,
+				E0DFC5D322CF8B0200127FCD /* RNAdMobUtils.h */,
+				E0DFC5FB22CF8B0200127FCD /* RNAdMobUtils.m */,
 			);
 			name = RNBridgeTest;
 			sourceTree = "<group>";
@@ -556,8 +571,18 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				C93C383911E35AB49FCB816D /* Pods_RNBridgeTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C2203A431D8582861172928 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				404DA3100E9A8D80C3771A98 /* Pods-RNBridgeTest.debug.xcconfig */,
+				2B92EC19BDEFAC2B19086060 /* Pods-RNBridgeTest.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -616,6 +641,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E0DFC58822CCCE8100127FCD /* Recovered References */,
+				3C2203A431D8582861172928 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -685,10 +711,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RNBridgeTest" */;
 			buildPhases = (
+				2CD9D60177FC869F22E4595B /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				3F8C6725B3105978FE20184B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1163,6 +1191,28 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		2CD9D60177FC869F22E4595B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RNBridgeTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1176,6 +1226,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		3F8C6725B3105978FE20184B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RNBridgeTest/Pods-RNBridgeTest-frameworks.sh",
+				"${PODS_ROOT}/AppSamuraiAdSDK/Frameworks/AppSamuraiAdSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppSamuraiAdSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RNBridgeTest/Pods-RNBridgeTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1194,8 +1266,10 @@
 			files = (
 				E0DFC57922CA4CE000127FCD /* Alert.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				E0DFC5B822CF6BFE00127FCD /* RNAppSamuraiInterstitial.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				E0DFC57B22CA4D6000127FCD /* Alert.swift in Sources */,
+				E0DFC5FC22CF8B0300127FCD /* RNAdMobUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1305,6 +1379,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 404DA3100E9A8D80C3771A98 /* Pods-RNBridgeTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1332,6 +1407,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B92EC19BDEFAC2B19086060 /* Pods-RNBridgeTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
