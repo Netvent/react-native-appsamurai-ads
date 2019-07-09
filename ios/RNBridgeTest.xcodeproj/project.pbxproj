@@ -45,6 +45,9 @@
 		E0226A8122D38BBD009B616B /* RNAppSamuraiInterstitial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226A8022D38BBD009B616B /* RNAppSamuraiInterstitial.swift */; };
 		E0226AB622D4B8AE009B616B /* RNAppSamuraiRewarded.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226AB522D4B8AE009B616B /* RNAppSamuraiRewarded.m */; };
 		E0226AB822D4B918009B616B /* RNAppSamuraiRewarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226AB722D4B918009B616B /* RNAppSamuraiRewarded.swift */; };
+		E0226ABD22D4CDA9009B616B /* RNASBannerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226AB922D4CDA9009B616B /* RNASBannerViewManager.m */; };
+		E0226ABE22D4CDA9009B616B /* RNASBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226ABA22D4CDA9009B616B /* RNASBannerView.m */; };
+		E0226AC122D4CFB5009B616B /* RCTConvert+GADAdSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226AC022D4CFB5009B616B /* RCTConvert+GADAdSize.m */; };
 		E0DFC57922CA4CE000127FCD /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57822CA4CE000127FCD /* Alert.m */; };
 		E0DFC57B22CA4D6000127FCD /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57A22CA4D6000127FCD /* Alert.swift */; };
 		E0DFC5FC22CF8B0300127FCD /* RNAdMobUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC5FB22CF8B0200127FCD /* RNAdMobUtils.m */; };
@@ -385,6 +388,12 @@
 		E0226A8022D38BBD009B616B /* RNAppSamuraiInterstitial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNAppSamuraiInterstitial.swift; sourceTree = "<group>"; };
 		E0226AB522D4B8AE009B616B /* RNAppSamuraiRewarded.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAppSamuraiRewarded.m; sourceTree = "<group>"; };
 		E0226AB722D4B918009B616B /* RNAppSamuraiRewarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNAppSamuraiRewarded.swift; sourceTree = "<group>"; };
+		E0226AB922D4CDA9009B616B /* RNASBannerViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNASBannerViewManager.m; sourceTree = "<group>"; };
+		E0226ABA22D4CDA9009B616B /* RNASBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNASBannerView.m; sourceTree = "<group>"; };
+		E0226ABB22D4CDA9009B616B /* RNASBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNASBannerView.h; sourceTree = "<group>"; };
+		E0226ABC22D4CDA9009B616B /* RNASBannerViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNASBannerViewManager.h; sourceTree = "<group>"; };
+		E0226ABF22D4CFB5009B616B /* RCTConvert+GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+GADAdSize.h"; sourceTree = "<group>"; };
+		E0226AC022D4CFB5009B616B /* RCTConvert+GADAdSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+GADAdSize.m"; sourceTree = "<group>"; };
 		E0DFC57522CA400E00127FCD /* RNBridgeTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNBridgeTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		E0DFC57822CA4CE000127FCD /* Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		E0DFC57A22CA4D6000127FCD /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -552,6 +561,12 @@
 				E0226A8022D38BBD009B616B /* RNAppSamuraiInterstitial.swift */,
 				E0226AB522D4B8AE009B616B /* RNAppSamuraiRewarded.m */,
 				E0226AB722D4B918009B616B /* RNAppSamuraiRewarded.swift */,
+				E0226ABB22D4CDA9009B616B /* RNASBannerView.h */,
+				E0226ABA22D4CDA9009B616B /* RNASBannerView.m */,
+				E0226ABC22D4CDA9009B616B /* RNASBannerViewManager.h */,
+				E0226AB922D4CDA9009B616B /* RNASBannerViewManager.m */,
+				E0226ABF22D4CFB5009B616B /* RCTConvert+GADAdSize.h */,
+				E0226AC022D4CFB5009B616B /* RCTConvert+GADAdSize.m */,
 			);
 			name = RNBridgeTest;
 			sourceTree = "<group>";
@@ -1282,9 +1297,12 @@
 				E0DFC57922CA4CE000127FCD /* Alert.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				E0226AB622D4B8AE009B616B /* RNAppSamuraiRewarded.m in Sources */,
+				E0226ABD22D4CDA9009B616B /* RNASBannerViewManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				E0226A5922D38BA4009B616B /* RNAppSamuraiInterstitial.m in Sources */,
+				E0226AC122D4CFB5009B616B /* RCTConvert+GADAdSize.m in Sources */,
 				E0DFC57B22CA4D6000127FCD /* Alert.swift in Sources */,
+				E0226ABE22D4CDA9009B616B /* RNASBannerView.m in Sources */,
 				E0226A8122D38BBD009B616B /* RNAppSamuraiInterstitial.swift in Sources */,
 				E0DFC5FC22CF8B0300127FCD /* RNAdMobUtils.m in Sources */,
 				E0226AB822D4B918009B616B /* RNAppSamuraiRewarded.swift in Sources */,

@@ -11,7 +11,7 @@ import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import {NativeModules} from 'react-native';
 import AppSamuraiInterstitial from './RNAppSamuraiInterstitial';
 import AppSamuraiRewarded from './RNAppSamuraiRewarded';
-// import AppSamuraiBanner from './RNAppSamuraiBanner';
+import AppSamuraiBanner from './RNAppSamuraiBanner';
 
 
 export default class App extends Component<{}> {
@@ -145,6 +145,16 @@ export default class App extends Component<{}> {
           onPress={this.loadBanner}
           />
         <Text style={styles.instructions}>{this.state.log}</Text>
+        <AppSamuraiBanner
+              adSize="mediumRectangle"
+              adUnitID="ca-app-pub-3940256099942544/6300978111"
+              adUnitIDs={{
+                "1": 'ca-app-pub-3940256099942544/6300978111',
+                "0": 'appsamurai-sample-android-banner-ad-id'
+              }}
+              ref={el => (this._basicExample = el)}
+            />
+
       </View>
     );
   }
