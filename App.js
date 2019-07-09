@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import {NativeModules} from 'react-native';
 import AppSamuraiInterstitial from './RNAppSamuraiInterstitial';
-// import AppSamuraiRewarded from './RNAppSamuraiRewarded';
+import AppSamuraiRewarded from './RNAppSamuraiRewarded';
 // import AppSamuraiBanner from './RNAppSamuraiBanner';
 
 
@@ -70,7 +70,7 @@ export default class App extends Component<{}> {
   }
 
   showRewarded = () => {
-    // AppSamuraiRewarded.showAd();
+    AppSamuraiRewarded.showAd();
   }
 
   loadRewarded = () => {
@@ -78,24 +78,33 @@ export default class App extends Component<{}> {
       "1": 'ca-app-pub-3940256099942544/5224354917',
       "0": 'appsamurai-sample-android-rewardbasedvideo-ad-id'
     }
-    // AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
-    // AppSamuraiRewarded.addEventListener('adLoaded',
-    //   () => this.setLog('AppSamuraiRewarded adLoaded')
-    // );
-    // AppSamuraiRewarded.addEventListener('adFailedToLoad',
-    //   () => this.setLog('AppSamuraiRewarded adFailedToLoad')
-    // );
-    // AppSamuraiRewarded.addEventListener('adOpened',
-    //   () => this.setLog('AppSamuraiRewarded adOpened')
-    // );
-    // AppSamuraiRewarded.addEventListener('adClosed',
-    //   () => this.setLog('AppSamuraiRewarded adClosed')
-    // );
-    // AppSamuraiRewarded.addEventListener('adLeftApplication',
-    //   () => this.setLog('AppSamuraiRewarded adLeftApplication')
-    // );
+    AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
+    AppSamuraiRewarded.addEventListener('adLoaded',
+      () => this.setLog('AppSamuraiRewarded adLoaded')
+    );
+    AppSamuraiRewarded.addEventListener('adFailedToLoad',
+      () => this.setLog('AppSamuraiRewarded adFailedToLoad')
+    );
+    AppSamuraiRewarded.addEventListener('adOpened',
+      () => this.setLog('AppSamuraiRewarded adOpened')
+    );
+    AppSamuraiRewarded.addEventListener('adClosed',
+      () => this.setLog('AppSamuraiRewarded adClosed')
+    );
+    AppSamuraiRewarded.addEventListener('adLeftApplication',
+      () => this.setLog('AppSamuraiRewarded adLeftApplication')
+    );
+    AppSamuraiRewarded.addEventListener('rewarded',
+      () => this.setLog('AppSamuraiRewarded rewarded')
+    );
+    AppSamuraiRewarded.addEventListener('videoStarted',
+      () => this.setLog('AppSamuraiRewarded videoStarted')
+    );
+    AppSamuraiRewarded.addEventListener('videoCompleted',
+      () => this.setLog('AppSamuraiRewarded videoCompleted')
+    );
 
-    // AppSamuraiRewarded.requestAd().catch(error => console.warn(error));
+    AppSamuraiRewarded.requestAd().catch(error => console.warn(error));
   }
 
   loadBanner = () => {

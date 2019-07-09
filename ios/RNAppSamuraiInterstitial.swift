@@ -28,6 +28,18 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   let kEventAdClosed: String = "interstitialAdClosed"
   let kEventAdLeftApplication: String = "interstitialAdLeftApplication"
 
+  /// - Returns: all supported events
+  @objc open override func supportedEvents() -> [String] {
+    return [
+      kEventAdLoaded,
+      kEventAdFailedToLoad,
+      kEventAdOpened,
+      kEventAdFailedToOpen,
+      kEventAdClosed,
+      kEventAdLeftApplication
+    ]
+  }
+  
   @objc
   func setAdUnitIDs(_ adUnitIDs: [String: String]) {
     print("Setting AdUnitIDs \(adUnitIDs)")
@@ -105,26 +117,14 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
     return true
   }
   
-  /// - Returns: all supported events
-  @objc open override func supportedEvents() -> [String] {
-    return [
-      kEventAdLoaded,
-      kEventAdFailedToLoad,
-      kEventAdOpened,
-      kEventAdFailedToOpen,
-      kEventAdClosed,
-      kEventAdLeftApplication
-    ]
-  }
-  
   //MARK: - ASInterstitialDelegate functions
   // Notify when ad is succesfully received
   func interstitialDidReceiveAd(_ asInterstitial: ASInterstitial) {
+    print("interstitialDidReceiveAd")
     self.sendEvent(withName: kEventAdLoaded, body: nil)
     if ( requestAdResolve != nil ){
       requestAdResolve!(nil)
     }
-    print("interstitialDidReceiveAd")
   }
   
   // Notify when ad is failed to receive, check ASAdRequestError types and console logs for details
