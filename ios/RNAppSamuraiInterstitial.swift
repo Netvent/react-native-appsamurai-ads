@@ -11,8 +11,8 @@ import UIKit
 import AppSamuraiAdSDK
 
 
-@objc(AppSamuraiInterstitial)
-class AppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
+@objc(RNAppSamuraiInterstitial)
+class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   
   private var asInterstitial: ASInterstitial?
   private var adUnitID: String = ""
