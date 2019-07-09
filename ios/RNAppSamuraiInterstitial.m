@@ -16,7 +16,7 @@
 RCT_EXTERN_METHOD(supportedEvents)
 
 RCT_EXTERN_METHOD(
-  setAdUnitID:(NSString *)adUnitID
+  setAdUnitIDs:(NSDictionary *)adUnitIDs
 )
 
 RCT_EXTERN_METHOD(

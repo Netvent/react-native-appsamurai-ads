@@ -15,7 +15,7 @@ import AppSamuraiAdSDK
 class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   
   private var asInterstitial: ASInterstitial?
-  private var adUnitID: String = ""
+  private var adUnitIDs: [String: String] = [:]
   private var testDevices: Array<String> = []
   private var requestAdResolve: RCTPromiseResolveBlock?
   private var requestAdReject: RCTPromiseRejectBlock?
@@ -29,14 +29,14 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   let kEventAdLeftApplication: String = "interstitialAdLeftApplication"
 
   @objc
-  func setAdUnitID(_ adUnitID: String) {
-    print("Seting AdUnitID \(adUnitID)")
-    self.adUnitID = adUnitID
+  func setAdUnitIDs(_ adUnitIDs: [String: String]) {
+    print("Setting AdUnitIDs \(adUnitIDs)")
+    self.adUnitIDs = adUnitIDs
   }
-
+  
   @objc
   func setTestDevices(_ testDevices: Array<String>) {
-    print("Seting test devices \(testDevices)")
+    print("Setting test devices \(testDevices)")
   }
 
   @objc
@@ -49,13 +49,27 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
     if ( asInterstitial == nil || asInterstitial!.hasBeenUsed ){
       self.requestAdResolve = resolve
       self.requestAdReject = reject
-      asInterstitial = ASInterstitial(adUnitID: adUnitID, gadAdUnitID: "/6499/example/interstitial")
-      //    asInterstitial = ASInterstitial(adUnitID: "nn-udA1H1PkO9YVOSxot4g")
-      // delegate is used to receive ad events
-      asInterstitial?.delegate = self
       
-      // Load ad with request
-      asInterstitial?.loadAd(adRequest: ASAdRequest())
+      var asadUnitID: String? = nil
+      var gaadUnitID: String? = nil
+      for (adnetwork, adUnitID) in adUnitIDs {
+        print("\(adnetwork): \(adUnitID)")
+        if ( adnetwork == "0" ) {
+          asadUnitID = adUnitID
+        } else {
+          gaadUnitID = adUnitID
+        }
+      }
+
+      if ( asadUnitID != nil ){
+        asInterstitial = ASInterstitial(adUnitID: asadUnitID!, gadAdUnitID: gaadUnitID)
+        //    asInterstitial = ASInterstitial(adUnitID: "nn-udA1H1PkO9YVOSxot4g")
+        // delegate is used to receive ad events
+        asInterstitial?.delegate = self
+        
+        // Load ad with request
+        asInterstitial?.loadAd(adRequest: ASAdRequest())
+      }
     } else {
       reject("E_AD_ALREADY_LOADED", "Ad is already loaded.", nil)
     }
@@ -107,6 +121,9 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   // Notify when ad is succesfully received
   func interstitialDidReceiveAd(_ asInterstitial: ASInterstitial) {
     self.sendEvent(withName: kEventAdLoaded, body: nil)
+    if ( requestAdResolve != nil ){
+      requestAdResolve!(nil)
+    }
     print("interstitialDidReceiveAd")
   }
   
@@ -114,6 +131,9 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   func interstitialDidFailToReceiveAd(_ asInterstitial: ASInterstitial, error: ASAdRequestError) {
     print("interstitialDidFailToReceiveAd \(error.localizedDescription)")
     self.sendEvent(withName: kEventAdFailedToLoad, body: error.localizedDescription)
+    if (requestAdReject != nil){
+      requestAdReject!("E_AD_REQUEST_FAILED", error.localizedDescription, error);
+    }
   }
   
   // Notify when ad will be presented screen on fullscreen

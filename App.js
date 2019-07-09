@@ -39,8 +39,8 @@ export default class App extends Component<{}> {
       "1": 'XXca-app-pub-3940256099942544/1033173712',
       "0": 'appsamurai-sample-android-interstitial-ad-id'
     }
-    // AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
-    AppSamuraiInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712");
+    AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
+    // AppSamuraiInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712");
     AppSamuraiInterstitial.addEventListener('adLoaded',
       () => this.setLog('AppSamuraiInterstitial adLoaded')
     );
@@ -57,7 +57,16 @@ export default class App extends Component<{}> {
       () => this.setLog('AppSamuraiInterstitial adLeftApplication')
     );
 
-    AppSamuraiInterstitial.requestAd().catch(error => console.warn(error));
+    AppSamuraiInterstitial.requestAd()
+    .then(() => 
+      AppSamuraiInterstitial.showAd())
+    .catch(error => {
+        console.warn("An error occurred while requesting ad")
+        // console.warn(error)
+      }
+    );
+
+    // AppSamuraiInterstitial.requestAd().catch(error => console.warn(error));
   }
 
   showRewarded = () => {
