@@ -32,6 +32,9 @@ export default class App extends Component<{}> {
   }
 
   loadInterstitial = () => {
+
+    AppSamuraiInterstitial.removeAllListeners();
+
     var adUnitIDs = {
       "1": 'XXca-app-pub-3940256099942544/1033173712',
       "0": 'appsamurai-sample-android-interstitial-ad-id'

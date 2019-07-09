@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 @objc(Alert)
 class Alert: NSObject {
   
@@ -20,13 +21,19 @@ class Alert: NSObject {
     negativeBtnText:String,
     onPositiveCallback: @escaping RCTResponseSenderBlock ,
     onNegativeCallback: @escaping RCTResponseSenderBlock ){
+    
+    print("Showing alert")
+
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     let positiveAction = UIAlertAction(title: positiveBtnText, style: .default) { (action:UIAlertAction) in
       onPositiveCallback([NSNull()])
+      print("onPositiveCallback")
     }
     
     let negativeAction = UIAlertAction(title: negativeBtnText, style: .cancel) { (action:UIAlertAction) in
       onNegativeCallback([NSNull()])
+      print("onNegativeCallback")
+
     }
     
     alertController.addAction(positiveAction)

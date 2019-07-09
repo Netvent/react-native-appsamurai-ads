@@ -3,7 +3,7 @@ import {
   NativeEventEmitter,
 } from 'react-native';
 
-const AppSamuraiInterstitial = NativeModules.RNAppSamuraiInterstitial;
+const AppSamuraiInterstitial = NativeModules.AppSamuraiInterstitial;
 
 const eventEmitter = new NativeEventEmitter(AppSamuraiInterstitial);
 
