@@ -13,13 +13,13 @@
 
 @implementation RNASBannerView
 {
-    GADBannerView *_bannerView;
+    ASBannerView *_bannerView;
 }
 
 - (void)dealloc
 {
     _bannerView.delegate = nil;
-    _bannerView.adSizeDelegate = nil;
+//    _bannerView.adSizeDelegate = nil;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -28,9 +28,10 @@
         super.backgroundColor = [UIColor clearColor];
         UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
         UIViewController *rootViewController = [keyWindow rootViewController];
-        _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+//      _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+      _bannerView = [[ASBannerView alloc] initWithAdSize:ASAdSize.asAdSizeBanner];
         _bannerView.delegate = self;
-        _bannerView.adSizeDelegate = self;
+//        _bannerView.adSizeDelegate = self;
         _bannerView.rootViewController = rootViewController;
         [self addSubview:_bannerView];
     }
@@ -48,7 +49,8 @@
 - (void)loadBanner
 {
     if(self.onSizeChange) {
-        CGSize size = CGSizeFromGADAdSize(_bannerView.adSize);
+      CGSize size =  CGSizeMake(320, 50);
+//      CGSize size = CGSizeFromGADAdSize(_bannerView.adSize);
         if(!CGSizeEqualToSize(size, self.bounds.size)) {
             self.onSizeChange(@{
                                 @"width": @(size.width),
@@ -56,14 +58,17 @@
                                 });
         }
     }
-    GADRequest *request = [GADRequest request];
-    request.testDevices = _testDevices;
-    [_bannerView loadRequest:request];
+//    GADRequest *request = [GADRequest request];
+//    request.testDevices = _testDevices;
+//  [_bannerView loadRequest:request];
+
+  ASAdRequest *request = [[ASAdRequest alloc] init];
+    [_bannerView loadAdWithAdRequest:request];
 }
 
 - (void)setTestDevices:(NSArray *)testDevices
 {
-    _testDevices = RNAdMobProcessTestDevices(testDevices, kGADSimulatorID);
+//    _testDevices = RNAdMobProcessTestDevices(testDevices, kGADSimulatorID);
 }
 
 -(void)layoutSubviews
@@ -75,7 +80,7 @@
 # pragma mark GADBannerViewDelegate
 
 /// Tells the delegate an ad request loaded an ad.
-- (void)adViewDidReceiveAd:(__unused GADBannerView *)adView
+- (void)adViewDidReceiveAd:(__unused ASBannerView *)adView
 {
    if (self.onAdLoaded) {
        self.onAdLoaded(@{});
@@ -83,8 +88,8 @@
 }
 
 /// Tells the delegate an ad request failed.
-- (void)adView:(__unused GADBannerView *)adView
-didFailToReceiveAdWithError:(GADRequestError *)error
+- (void)adView:(__unused ASBannerView *)adView
+didFailToReceiveAdWithError:(ASAdRequestError *)error
 {
     if (self.onAdFailedToLoad) {
         self.onAdFailedToLoad(@{ @"error": @{ @"message": [error localizedDescription] } });
@@ -93,7 +98,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 
 /// Tells the delegate that a full screen view will be presented in response
 /// to the user clicking on an ad.
-- (void)adViewWillPresentScreen:(__unused GADBannerView *)adView
+- (void)adViewWillPresentScreen:(__unused ASBannerView *)adView
 {
     if (self.onAdOpened) {
         self.onAdOpened(@{});
@@ -101,7 +106,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 }
 
 /// Tells the delegate that the full screen view will be dismissed.
-- (void)adViewWillDismissScreen:(__unused GADBannerView *)adView
+- (void)adViewWillDismissScreen:(__unused ASBannerView *)adView
 {
     if (self.onAdClosed) {
         self.onAdClosed(@{});
@@ -110,7 +115,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 
 /// Tells the delegate that a user click will open another app (such as
 /// the App Store), backgrounding the current app.
-- (void)adViewWillLeaveApplication:(__unused GADBannerView *)adView
+- (void)adViewWillLeaveApplication:(__unused ASBannerView *)adView
 {
     if (self.onAdLeftApplication) {
         self.onAdLeftApplication(@{});
@@ -119,12 +124,13 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 
 # pragma mark GADAdSizeDelegate
 
-- (void)adView:(__unused GADBannerView *)bannerView willChangeAdSizeTo:(GADAdSize)size
-{
-    CGSize adSize = CGSizeFromGADAdSize(size);
-    self.onSizeChange(@{
-                              @"width": @(adSize.width),
-                              @"height": @(adSize.height) });
-}
+//- (void)adView:(__unused ASBannerView *)bannerView willChangeAdSizeTo:(ASAdSize *)size
+//{
+////    CGSize adSize = CGSizeFromGADAdSize(size);
+//    CGSize adSize =  CGSizeMake(320, 50);
+//    self.onSizeChange(@{
+//                              @"width": @(adSize.width),
+//                              @"height": @(adSize.height) });
+//}
 
 @end

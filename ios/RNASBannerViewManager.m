@@ -1,6 +1,6 @@
 #import "RNASBannerViewManager.h"
 #import "RNASBannerView.h"
-#import "RCTConvert+GADAdSize.h"
+#import "RCTConvert+ASAdSize.h"
 
 #if __has_include(<React/RCTBridge.h>)
 #import <React/RCTBridge.h>
@@ -33,7 +33,7 @@ RCT_EXPORT_METHOD(loadBanner:(nonnull NSNumber *)reactTag)
     }];
 }
 
-RCT_REMAP_VIEW_PROPERTY(adSize, _bannerView.adSize, GADAdSize)
+RCT_REMAP_VIEW_PROPERTY(adSize, _bannerView.adSize, ASAdSize)
 RCT_REMAP_VIEW_PROPERTY(adUnitID, _bannerView.adUnitID, NSString)
 
 RCT_EXPORT_VIEW_PROPERTY(testDevices, NSArray)

@@ -152,6 +152,21 @@ export default class App extends Component<{}> {
                 "1": 'ca-app-pub-3940256099942544/6300978111',
                 "0": 'appsamurai-sample-android-banner-ad-id'
               }}
+              onAdLoaded={()=> {
+                this.setLog('AppSamuraiBanner adLoaded')
+              }}
+              onAdFailedToLoad={()=> {
+                this.setLog('AppSamuraiBanner onAdFailedToLoad')
+              }}
+              onAdOpened={()=> {
+                this.setLog('AppSamuraiBanner onAdOpened')
+              }}
+              onAdClosed={()=> {
+                this.setLog('AppSamuraiBanner onAdClosed')
+              }}
+              onAdLeftApplication={()=> {
+                this.setLog('AppSamuraiBanner onAdLeftApplication')
+              }}
               ref={el => (this._basicExample = el)}
             />
 

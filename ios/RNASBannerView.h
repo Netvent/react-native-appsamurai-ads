@@ -4,11 +4,13 @@
 #import "RCTView.h"
 #endif
 
-@import GoogleMobileAds;
+//@import GoogleMobileAds;
+@import AppSamuraiAdSDK;
 
 @class RCTEventDispatcher;
 
-@interface RNASBannerView : RCTView <GADBannerViewDelegate, GADAdSizeDelegate>
+//@interface RNASBannerView : RCTView <GADBannerViewDelegate, GADAdSizeDelegate>
+@interface RNASBannerView : RCTView <ASBannerViewDelegate>
 
 @property (nonatomic, copy) NSArray *testDevices;
 
