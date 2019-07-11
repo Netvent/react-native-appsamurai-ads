@@ -19,7 +19,6 @@
 - (void)dealloc
 {
     _bannerView.delegate = nil;
-//    _bannerView.adSizeDelegate = nil;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -28,10 +27,8 @@
         super.backgroundColor = [UIColor clearColor];
         UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
         UIViewController *rootViewController = [keyWindow rootViewController];
-//      _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-      _bannerView = [[ASBannerView alloc] initWithAdSize:ASAdSize.asAdSizeBanner];
+        _bannerView = [[ASBannerView alloc] initWithAdSize:ASAdSize.asAdSizeBanner];
         _bannerView.delegate = self;
-//        _bannerView.adSizeDelegate = self;
         _bannerView.rootViewController = rootViewController;
         [self addSubview:_bannerView];
     }
@@ -58,17 +55,20 @@
                                 });
         }
     }
-//    GADRequest *request = [GADRequest request];
-//    request.testDevices = _testDevices;
-//  [_bannerView loadRequest:request];
 
   ASAdRequest *request = [[ASAdRequest alloc] init];
-    [_bannerView loadAdWithAdRequest:request];
+  request.testDevices = _testDevices;
+  for (NSString *testDevice in request.testDevices) {
+    NSLog(@"Test Device: %@",testDevice);
+  }
+  [_bannerView loadAdWithAdRequest:request];
 }
 
 - (void)setTestDevices:(NSArray *)testDevices
 {
-//    _testDevices = RNAdMobProcessTestDevices(testDevices, kGADSimulatorID);
+  NSLog(@"Setting Test Devices");
+  _testDevices = testDevices;
+  //    _testDevices = RNAdMobProcessTestDevices(testDevices, kGADSimulatorID);
 }
 
 -(void)layoutSubviews
@@ -121,16 +121,4 @@ didFailToReceiveAdWithError:(ASAdRequestError *)error
         self.onAdLeftApplication(@{});
     }
 }
-
-# pragma mark GADAdSizeDelegate
-
-//- (void)adView:(__unused ASBannerView *)bannerView willChangeAdSizeTo:(ASAdSize *)size
-//{
-////    CGSize adSize = CGSizeFromGADAdSize(size);
-//    CGSize adSize =  CGSizeMake(320, 50);
-//    self.onSizeChange(@{
-//                              @"width": @(adSize.width),
-//                              @"height": @(adSize.height) });
-//}
-
 @end

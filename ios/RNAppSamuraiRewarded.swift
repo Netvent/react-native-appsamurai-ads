@@ -20,14 +20,6 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   private var requestAdResolve: RCTPromiseResolveBlock?
   private var requestAdReject: RCTPromiseRejectBlock?
   
-  
-//  let kEventAdLoaded: String = "interstitialAdLoaded"
-//  let kEventAdFailedToLoad: String = "interstitialAdFailedToLoad"
-//  let kEventAdOpened: String = "interstitialAdOpened"
-//  let kEventAdFailedToOpen: String = "interstitialAdFailedToOpen"
-//  let kEventAdClosed: String = "interstitialAdClosed"
-//  let kEventAdLeftApplication: String = "interstitialAdLeftApplication"
-  
   let kEventAdLoaded = "rewardedVideoAdLoaded";
   let kEventAdFailedToLoad = "rewardedVideoAdFailedToLoad";
   let kEventAdOpened = "rewardedVideoAdOpened";
@@ -36,7 +28,6 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   let kEventRewarded = "rewardedVideoAdRewarded";
   let kEventVideoStarted = "rewardedVideoAdVideoStarted";
   let kEventVideoCompleted = "rewardedVideoAdVideoCompleted";
-
   
   /// - Returns: all supported events
   @objc open override func supportedEvents() -> [String] {
@@ -61,6 +52,7 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   @objc
   func setTestDevices(_ testDevices: Array<String>) {
     print("Setting test devices \(testDevices)")
+    self.testDevices = testDevices
   }
   
   @objc
@@ -75,23 +67,28 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
       self.requestAdReject = reject
       
       var asadUnitID: String? = nil
-      var gaadUnitID: String? = nil
+      var gadAdUnitID: String? = nil
       for (adnetwork, adUnitID) in adUnitIDs {
         print("\(adnetwork): \(adUnitID)")
-        if ( adnetwork == "0" ) {
+        if ( adnetwork == AdNetwork.APPSAMURAI.rawValue ) {
           asadUnitID = adUnitID
-        } else {
-          gaadUnitID = adUnitID
+        } else if ( adnetwork == AdNetwork.GOOGLE.rawValue ){
+          gadAdUnitID = adUnitID
         }
       }
       
+      print("APPSAMURAI: \(asadUnitID) GOOGLE: \(gadAdUnitID)")
+
       if ( asadUnitID != nil ){
-        asRewardBasedVideoAd = ASRewardBasedVideoAd(adUnitID: asadUnitID!, gadAdUnitID: gaadUnitID)
+        asRewardBasedVideoAd = ASRewardBasedVideoAd(adUnitID: asadUnitID!, gadAdUnitID: gadAdUnitID)
         // delegate is used to receive ad events
         asRewardBasedVideoAd?.delegate = self
-        
+        let adRequest = ASAdRequest()
+        if ( !testDevices.isEmpty ){
+          adRequest.testDevices = testDevices
+        }
         // Load ad with request
-        asRewardBasedVideoAd?.loadAd(adRequest: ASAdRequest())
+        asRewardBasedVideoAd?.loadAd(adRequest: adRequest)
       }
     } else {
       reject("E_AD_ALREADY_LOADED", "Ad is already loaded.", nil)

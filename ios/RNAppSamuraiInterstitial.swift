@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import AppSamuraiAdSDK
 
-
 @objc(RNAppSamuraiInterstitial)
 class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   
@@ -49,6 +48,7 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   @objc
   func setTestDevices(_ testDevices: Array<String>) {
     print("Setting test devices \(testDevices)")
+    self.testDevices = testDevices
   }
 
   @objc
@@ -63,24 +63,29 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
       self.requestAdReject = reject
       
       var asadUnitID: String? = nil
-      var gaadUnitID: String? = nil
+      var gadAdUnitID: String? = nil
       for (adnetwork, adUnitID) in adUnitIDs {
         print("\(adnetwork): \(adUnitID)")
-        if ( adnetwork == "0" ) {
+        if ( adnetwork == AdNetwork.APPSAMURAI.rawValue ) {
           asadUnitID = adUnitID
-        } else {
-          gaadUnitID = adUnitID
+        } else if ( adnetwork == AdNetwork.GOOGLE.rawValue ){
+          gadAdUnitID = adUnitID
         }
       }
 
+      print("APPSAMURAI: \(asadUnitID) GOOGLE: \(gadAdUnitID)")
+
       if ( asadUnitID != nil ){
-        asInterstitial = ASInterstitial(adUnitID: asadUnitID!, gadAdUnitID: gaadUnitID)
-        //    asInterstitial = ASInterstitial(adUnitID: "nn-udA1H1PkO9YVOSxot4g")
+        asInterstitial = ASInterstitial(adUnitID: asadUnitID!, gadAdUnitID: gadAdUnitID)
         // delegate is used to receive ad events
         asInterstitial?.delegate = self
         
+        let adRequest = ASAdRequest()
+        if ( !testDevices.isEmpty ){
+          adRequest.testDevices = testDevices
+        }
         // Load ad with request
-        asInterstitial?.loadAd(adRequest: ASAdRequest())
+        asInterstitial?.loadAd(adRequest: adRequest)
       }
     } else {
       reject("E_AD_ALREADY_LOADED", "Ad is already loaded.", nil)

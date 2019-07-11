@@ -33,8 +33,10 @@
   [self.window makeKeyAndVisible];
   
   
+  // initializing google mobile ads
   [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
 
+  // initializing app samurai mobile ads
   [ASMobileAds initialize:@"gJd-a6vBCfVp0_YgM6df2Q"];
 
   return YES;

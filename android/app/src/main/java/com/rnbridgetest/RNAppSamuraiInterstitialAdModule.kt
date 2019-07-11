@@ -27,13 +27,13 @@ import java.util.HashMap
 class RNAppSamuraiInterstitialAdModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     companion object {
-        val REACT_CLASS = "RNAppSamuraiInterstitial"
+        const val REACT_CLASS = "RNAppSamuraiInterstitial"
 
-        val EVENT_AD_LOADED = "interstitialAdLoaded"
-        val EVENT_AD_FAILED_TO_LOAD = "interstitialAdFailedToLoad"
-        val EVENT_AD_OPENED = "interstitialAdOpened"
-        val EVENT_AD_CLOSED = "interstitialAdClosed"
-        val EVENT_AD_LEFT_APPLICATION = "interstitialAdLeftApplication"
+        const val EVENT_AD_LOADED = "interstitialAdLoaded"
+        const val EVENT_AD_FAILED_TO_LOAD = "interstitialAdFailedToLoad"
+        const val EVENT_AD_OPENED = "interstitialAdOpened"
+        const val EVENT_AD_CLOSED = "interstitialAdClosed"
+        const val EVENT_AD_LEFT_APPLICATION = "interstitialAdLeftApplication"
     }
 
 
@@ -54,7 +54,6 @@ class RNAppSamuraiInterstitialAdModule(reactContext: ReactApplicationContext) : 
     @ReactMethod
     fun setAdUnitIDs(adUnitIDs: ReadableMap) {
         this.adUnitIDs = convertAdUnitIdMap(adUnitIDs)
-        Log.d(Utils.LOGTAG, "AdUnitIDs: " + this.adUnitIDs.toString())
     }
 
     @ReactMethod

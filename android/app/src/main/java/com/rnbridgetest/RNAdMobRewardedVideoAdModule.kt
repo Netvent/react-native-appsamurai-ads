@@ -17,16 +17,16 @@ import java.util.HashMap
 class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     companion object {
-        val REACT_CLASS = "RNAppSamuraiRewarded"
+        const val REACT_CLASS = "RNAppSamuraiRewarded"
 
-        val EVENT_AD_LOADED = "rewardedVideoAdLoaded"
-        val EVENT_AD_FAILED_TO_LOAD = "rewardedVideoAdFailedToLoad"
-        val EVENT_AD_OPENED = "rewardedVideoAdOpened"
-        val EVENT_AD_CLOSED = "rewardedVideoAdClosed"
-        val EVENT_AD_LEFT_APPLICATION = "rewardedVideoAdLeftApplication"
-        val EVENT_REWARDED = "rewardedVideoAdRewarded"
-        val EVENT_VIDEO_STARTED = "rewardedVideoAdVideoStarted"
-        val EVENT_VIDEO_COMPLETED = "rewardedVideoAdVideoCompleted"
+        const val EVENT_AD_LOADED = "rewardedVideoAdLoaded"
+        const val EVENT_AD_FAILED_TO_LOAD = "rewardedVideoAdFailedToLoad"
+        const val EVENT_AD_OPENED = "rewardedVideoAdOpened"
+        const val EVENT_AD_CLOSED = "rewardedVideoAdClosed"
+        const val EVENT_AD_LEFT_APPLICATION = "rewardedVideoAdLeftApplication"
+        const val EVENT_REWARDED = "rewardedVideoAdRewarded"
+        const val EVENT_VIDEO_STARTED = "rewardedVideoAdVideoStarted"
+        const val EVENT_VIDEO_COMPLETED = "rewardedVideoAdVideoCompleted"
     }
 
     private var mRewardedAd: RewardedAd? = null
@@ -47,7 +47,6 @@ class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : Reac
     @ReactMethod
     fun setAdUnitIDs(adUnitIDs: ReadableMap) {
         this.adUnitIDs = convertAdUnitIdMap(adUnitIDs)
-        Log.d(Utils.LOGTAG, "AdUnitIDs: " + this.adUnitIDs.toString())
     }
 
     @ReactMethod

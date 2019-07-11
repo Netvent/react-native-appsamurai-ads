@@ -84,7 +84,7 @@ AppSamuraiBanner.propTypes = {
    * AdMob ad unit ID
    */
   adUnitID: string,
-  adUnitIDs: any,
+  gadAdUnitID: string,
 
   /**
    * Array of test devices. Use AdMobBanner.simulatorId for the simulator

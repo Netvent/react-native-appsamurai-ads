@@ -12,7 +12,7 @@ import {NativeModules} from 'react-native';
 import AppSamuraiInterstitial from './RNAppSamuraiInterstitial';
 import AppSamuraiRewarded from './RNAppSamuraiRewarded';
 import AppSamuraiBanner from './RNAppSamuraiBanner';
-
+import {AdNetwork} from './Constants';
 
 export default class App extends Component<{}> {
   state = { 
@@ -36,9 +36,18 @@ export default class App extends Component<{}> {
     AppSamuraiInterstitial.removeAllListeners();
 
     var adUnitIDs = {
-      "1": 'XXca-app-pub-3940256099942544/1033173712',
-      "0": 'appsamurai-sample-android-interstitial-ad-id'
+      [AdNetwork.APPSAMURAI]: 'appsamurai-sample-android-interstitial-ad-id',
+      [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/1033173712',
     }
+    var testDeviceIDs = [
+      'test-device-id-1',
+      'test-device-id-2',
+      'test-device-id-3',
+      'test-device-id-4',
+    ]
+
+    AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
+
     AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
     // AppSamuraiInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712");
     AppSamuraiInterstitial.addEventListener('adLoaded',
@@ -59,7 +68,8 @@ export default class App extends Component<{}> {
 
     AppSamuraiInterstitial.requestAd()
     .then(() => 
-      AppSamuraiInterstitial.showAd())
+     AppSamuraiInterstitial.showAd()
+    )
     .catch(error => {
         console.warn("An error occurred while requesting ad")
         // console.warn(error)
@@ -75,9 +85,18 @@ export default class App extends Component<{}> {
 
   loadRewarded = () => {
     var adUnitIDs = {
-      "1": 'ca-app-pub-3940256099942544/5224354917',
-      "0": 'appsamurai-sample-android-rewardbasedvideo-ad-id'
+      [AdNetwork.APPSAMURAI]: 'appsamurai-sample-android-rewardbasedvideo-ad-id',
+      [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/5224354917'
     }
+
+    var testDeviceIDs = [
+      'test-device-id-1',
+      'test-device-id-2',
+      'test-device-id-3',
+      'test-device-id-4',
+    ]
+
+    AppSamuraiRewarded.setTestDevices(testDeviceIDs);
     AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
     AppSamuraiRewarded.addEventListener('adLoaded',
       () => this.setLog('AppSamuraiRewarded adLoaded')
@@ -147,11 +166,14 @@ export default class App extends Component<{}> {
         <Text style={styles.instructions}>{this.state.log}</Text>
         <AppSamuraiBanner
               adSize="mediumRectangle"
-              adUnitID="ca-app-pub-3940256099942544/6300978111"
-              adUnitIDs={{
-                "1": 'ca-app-pub-3940256099942544/6300978111',
-                "0": 'appsamurai-sample-android-banner-ad-id'
-              }}
+              adUnitID="appsamurai-sample-android-banner-ad-id"
+              gadAdUnitID="ca-app-pub-3940256099942544/6300978111"
+              testDevices={[
+                '026A278EFB88853437C158A1AB023B9E',
+                'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
+                'test-device-id-3',
+                'test-device-id-4',
+              ]}
               onAdLoaded={()=> {
                 this.setLog('AppSamuraiBanner adLoaded')
               }}

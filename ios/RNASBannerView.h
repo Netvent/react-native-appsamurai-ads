@@ -4,15 +4,15 @@
 #import "RCTView.h"
 #endif
 
-//@import GoogleMobileAds;
 @import AppSamuraiAdSDK;
 
 @class RCTEventDispatcher;
 
-//@interface RNASBannerView : RCTView <GADBannerViewDelegate, GADAdSizeDelegate>
 @interface RNASBannerView : RCTView <ASBannerViewDelegate>
 
 @property (nonatomic, copy) NSArray *testDevices;
+@property (nonatomic, copy) NSString *adUnitID;
+@property (nonatomic, copy) NSString *gadAdUnitID;
 
 @property (nonatomic, copy) RCTBubblingEventBlock onSizeChange;
 @property (nonatomic, copy) RCTBubblingEventBlock onAdLoaded;

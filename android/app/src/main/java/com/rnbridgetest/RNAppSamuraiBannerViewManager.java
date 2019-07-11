@@ -3,16 +3,15 @@ package com.rnbridgetest;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.appsamurai.ads.common.AdRequest;
 import com.appsamurai.ads.common.AdSize;
 import com.appsamurai.ads.data.AdNetwork;
 import com.appsamurai.waterfall.ad.BannerAd;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableNativeArray;
@@ -29,13 +28,12 @@ import java.util.Map;
 
 class ReactAdView extends ReactViewGroup {
 
-//    protected AdView adView;
     protected BannerAd mBannerAd;
 
     String adUnitID;
-    HashMap<AdNetwork, String> adUnitIDs;
+    String gadAdUnitID;
     String[] testDevices;
-    AdSize adSize;
+    AdSize adSize = AdSize.BANNER;
     LinearLayout adContainer;
 
     public ReactAdView(final Context context) {
@@ -57,6 +55,7 @@ class ReactAdView extends ReactViewGroup {
 
         this.createContainer(context);
         mBannerAd = new BannerAd(context, adContainer);
+
         mBannerAd.setAdListener(new com.appsamurai.ads.common.AdListener() {
             @Override
             public void onAdClosed() {
@@ -125,39 +124,36 @@ class ReactAdView extends ReactViewGroup {
     }
 
     public void loadBanner() {
-//            AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
-//            if (testDevices != null) {
-//                for (int i = 0; i < testDevices.length; i++) {
-//                    String testDevice = testDevices[i];
+        HashMap<AdNetwork, String> map = new HashMap<>();
+        if ( adUnitID != null ){
+            map.put(AdNetwork.APPSAMURAI, adUnitID);
+        }
+
+        if ( gadAdUnitID != null ){
+            map.put(AdNetwork.GOOGLE, gadAdUnitID);
+        }
+        this.mBannerAd.setAdUnitIds(map);
+        this.mBannerAd.setAdSize(adSize);
+        AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+        if (testDevices != null) {
+            for (int i = 0; i < testDevices.length; i++) {
+                String testDevice = testDevices[i];
 //                    if (testDevice == "SIMULATOR") {
 //                        testDevice = AdRequest.DEVICE_ID_EMULATOR;
 //                    }
-//                    adRequestBuilder.addTestDevice(testDevice);
-//                }
-//            }
-//            AdRequest adRequest = adRequestBuilder.build();
-//            this.adView.loadAd(adRequest);
-
-            this.mBannerAd.loadAd(new com.appsamurai.ads.common.AdRequest.Builder().addTestDevice("YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==").build());
+                adRequestBuilder.addTestDevice(testDevice);
+            }
+        }
+        AdRequest adRequest = adRequestBuilder.build();
+        this.mBannerAd.loadAd(adRequest);
     }
 
     public void setAdUnitID(String adUnitID) {
-        if (this.adUnitID != null) {
-            // We can only set adUnitID once, so when it was previously set we have
-            // to recreate the view
-            this.createAdView();
-        }
         this.adUnitID = adUnitID;
-
-        HashMap<AdNetwork, String> map = new HashMap<>();
-//        map.put(AdNetwork.GOOGLE, adUnitID);
-        map.put(AdNetwork.APPSAMURAI, adUnitID);
-        this.mBannerAd.setAdUnitIds(map);
     }
 
-    public void setAdUnitIDs(HashMap<AdNetwork, String> adUnitIDs) {
-        this.adUnitIDs = adUnitIDs;
-        this.mBannerAd.setAdUnitIds(adUnitIDs);
+    public void setGadAdUnitID(String gadAdUnitID) {
+        this.gadAdUnitID = gadAdUnitID;
     }
 
     public void setTestDevices(String[] testDevices) {
@@ -166,8 +162,6 @@ class ReactAdView extends ReactViewGroup {
 
     public void setAdSize(AdSize adSize) {
         this.adSize = adSize;
-
-        this.mBannerAd.setAdSize(adSize);
     }
 }
 
@@ -177,7 +171,7 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
 
     public static final String PROP_AD_SIZE = "adSize";
     public static final String PROP_AD_UNIT_ID = "adUnitID";
-    public static final String PROP_AD_UNIT_IDS = "adUnitIDs";
+    public static final String PROP_GAD_AD_UNIT_ID = "gadAdUnitID";
     public static final String PROP_TEST_DEVICES = "testDevices";
 
     public static final String EVENT_SIZE_CHANGE = "onSizeChange";
@@ -234,10 +228,9 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
         view.setAdUnitID(adUnitID);
     }
 
-    @ReactProp(name = PROP_AD_UNIT_IDS)
-    public void setPropAdUnitIDs(final ReactAdView view, final ReadableMap adUnitIDs) {
-        HashMap<AdNetwork, String> map = convertAdUnitIdMap(adUnitIDs);
-        view.setAdUnitIDs(map);
+    @ReactProp(name = PROP_GAD_AD_UNIT_ID)
+    public void setPropGadAdUnitID(final ReactAdView view, final String gadAdUnitID) {
+        view.setGadAdUnitID(gadAdUnitID);
     }
 
     @ReactProp(name = PROP_TEST_DEVICES)
@@ -271,18 +264,5 @@ public class RNAppSamuraiBannerViewManager extends ViewGroupManager<ReactAdView>
                 root.loadBanner();
                 break;
         }
-    }
-
-    private HashMap<AdNetwork, String> convertAdUnitIdMap(ReadableMap adUnitIDs) {
-        HashMap<AdNetwork, String> map = new HashMap<>();
-        if (adUnitIDs.hasKey("0")) {
-            map.put(AdNetwork.APPSAMURAI, adUnitIDs.getString("0"));
-        }
-
-        if (adUnitIDs.hasKey("1")) {
-            map.put(AdNetwork.GOOGLE, adUnitIDs.getString("1"));
-        }
-
-        return map;
     }
 }
