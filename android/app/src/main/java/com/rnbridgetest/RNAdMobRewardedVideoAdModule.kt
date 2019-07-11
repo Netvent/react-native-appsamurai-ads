@@ -45,7 +45,7 @@ class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : Reac
 
     @ReactMethod
     fun setAdUnitIDs(adUnitIDs: ReadableMap) {
-        this.adUnitIDs = convertAdUnitIdMap(adUnitIDs)
+        this.adUnitIDs = Utils.convertAdUnitIdMap(adUnitIDs)
     }
 
     @ReactMethod
@@ -149,18 +149,5 @@ class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : Reac
     @ReactMethod
     fun isReady(callback: Callback) {
         Handler(Looper.getMainLooper()).post { callback.invoke(mRewardedAd?.isLoaded) }
-    }
-
-    private fun convertAdUnitIdMap(adUnitIDs: ReadableMap): HashMap<AdNetwork, String> {
-        val map = HashMap<AdNetwork, String>()
-        if (adUnitIDs.hasKey(AdNetwork.APPSAMURAI.value)) {
-            map[AdNetwork.APPSAMURAI] = adUnitIDs.getString(AdNetwork.APPSAMURAI.value)!!
-        }
-
-        if (adUnitIDs.hasKey(AdNetwork.GOOGLE.value)) {
-            map[AdNetwork.GOOGLE] = adUnitIDs.getString(AdNetwork.GOOGLE.value)!!
-        }
-
-        return map
     }
 }
