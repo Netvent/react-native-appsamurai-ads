@@ -60,8 +60,6 @@ class AppSamuraiBanner extends Component {
   }
 }
 
-AppSamuraiBanner.simulatorId = 'SIMULATOR';
-
 AppSamuraiBanner.propTypes = {
   ...ViewPropTypes,
 
