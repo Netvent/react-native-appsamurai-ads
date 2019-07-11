@@ -51,7 +51,6 @@
 		E0226AF622D60D5A009B616B /* AdNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226AF522D60D5A009B616B /* AdNetwork.swift */; };
 		E0DFC57922CA4CE000127FCD /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57822CA4CE000127FCD /* Alert.m */; };
 		E0DFC57B22CA4D6000127FCD /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57A22CA4D6000127FCD /* Alert.swift */; };
-		E0DFC5FC22CF8B0300127FCD /* RNAdMobUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC5FB22CF8B0200127FCD /* RNAdMobUtils.m */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -399,8 +398,6 @@
 		E0DFC57522CA400E00127FCD /* RNBridgeTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNBridgeTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		E0DFC57822CA4CE000127FCD /* Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		E0DFC57A22CA4D6000127FCD /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		E0DFC5D322CF8B0200127FCD /* RNAdMobUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAdMobUtils.h; sourceTree = "<group>"; };
-		E0DFC5FB22CF8B0200127FCD /* RNAdMobUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAdMobUtils.m; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F75F034A8BA1408E96415301 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
@@ -557,8 +554,6 @@
 				E0DFC57822CA4CE000127FCD /* Alert.m */,
 				E0DFC57A22CA4D6000127FCD /* Alert.swift */,
 				E0DFC57522CA400E00127FCD /* RNBridgeTest-Bridging-Header.h */,
-				E0DFC5D322CF8B0200127FCD /* RNAdMobUtils.h */,
-				E0DFC5FB22CF8B0200127FCD /* RNAdMobUtils.m */,
 				E0226A5822D38BA4009B616B /* RNAppSamuraiInterstitial.m */,
 				E0226A8022D38BBD009B616B /* RNAppSamuraiInterstitial.swift */,
 				E0226AB522D4B8AE009B616B /* RNAppSamuraiRewarded.m */,
@@ -1308,7 +1303,6 @@
 				E0226ABE22D4CDA9009B616B /* RNASBannerView.m in Sources */,
 				E0226A8122D38BBD009B616B /* RNAppSamuraiInterstitial.swift in Sources */,
 				E0226AF622D60D5A009B616B /* AdNetwork.swift in Sources */,
-				E0DFC5FC22CF8B0300127FCD /* RNAdMobUtils.m in Sources */,
 				E0226AB822D4B918009B616B /* RNAppSamuraiRewarded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

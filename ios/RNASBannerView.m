@@ -1,5 +1,4 @@
 #import "RNASBannerView.h"
-#import "RNAdMobUtils.h"
 
 #if __has_include(<React/RCTBridgeModule.h>)
 #import <React/RCTBridgeModule.h>
@@ -68,7 +67,6 @@
 {
   NSLog(@"Setting Test Devices");
   _testDevices = testDevices;
-  //    _testDevices = RNAdMobProcessTestDevices(testDevices, kGADSimulatorID);
 }
 
 -(void)layoutSubviews

@@ -40,11 +40,10 @@ export default class App extends Component<{}> {
       [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/1033173712',
     }
     var testDeviceIDs = [
-      'test-device-id-1',
-      'test-device-id-2',
+      '026A278EFB88853437C158A1AB023B9E',
+      'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
       'test-device-id-3',
-      'test-device-id-4',
-    ]
+]
 
     AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
 
@@ -90,11 +89,10 @@ export default class App extends Component<{}> {
     }
 
     var testDeviceIDs = [
-      'test-device-id-1',
-      'test-device-id-2',
+      '026A278EFB88853437C158A1AB023B9E',
+      'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
       'test-device-id-3',
-      'test-device-id-4',
-    ]
+]
 
     AppSamuraiRewarded.setTestDevices(testDeviceIDs);
     AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
@@ -170,8 +168,7 @@ export default class App extends Component<{}> {
               gadAdUnitID="ca-app-pub-3940256099942544/6300978111"
               testDevices={[
                 '026A278EFB88853437C158A1AB023B9E',
-                'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
-                'test-device-id-3',
+                'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg=='
                 'test-device-id-4',
               ]}
               onAdLoaded={()=> {

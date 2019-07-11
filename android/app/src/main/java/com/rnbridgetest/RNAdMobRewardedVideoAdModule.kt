@@ -2,7 +2,6 @@ package com.rnbridgetest
 
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 
 import com.appsamurai.ads.common.AdRequest
 import com.appsamurai.ads.data.AdNetwork
@@ -32,7 +31,7 @@ class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : Reac
     private var mRewardedAd: RewardedAd? = null
 
     private var adUnitIDs = HashMap<AdNetwork, String>()
-    private var testDevices: ArrayList<String>? = null
+    private var testDevices: ArrayList<String> = arrayListOf()
     private var mRequestAdPromise: Promise? = null
 
 
@@ -124,15 +123,8 @@ class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : Reac
                 mRequestAdPromise = promise
 
                 val adRequestBuilder = AdRequest.Builder()
-
-                if (testDevices != null) {
-                    for (i in testDevices!!.indices) {
-                        val testDevice = testDevices!![i]
-                        //                            if (testDevice == "SIMULATOR") {
-                        //                                testDevice = AdRequest.DEVICE_ID_EMULATOR;
-                        //                            }
-                        adRequestBuilder.addTestDevice(testDevice)
-                    }
+                for (testDevice in testDevices) {
+                    adRequestBuilder.addTestDevice(testDevice)
                 }
 
                 val adRequest = adRequestBuilder.build()
@@ -161,15 +153,14 @@ class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : Reac
 
     private fun convertAdUnitIdMap(adUnitIDs: ReadableMap): HashMap<AdNetwork, String> {
         val map = HashMap<AdNetwork, String>()
-        if (adUnitIDs.hasKey("0")) {
-            map.put(AdNetwork.APPSAMURAI, adUnitIDs.getString("0")!!)
+        if (adUnitIDs.hasKey(AdNetwork.APPSAMURAI.value)) {
+            map[AdNetwork.APPSAMURAI] = adUnitIDs.getString(AdNetwork.APPSAMURAI.value)!!
         }
 
-        if (adUnitIDs.hasKey("1")) {
-            map.put(AdNetwork.GOOGLE, adUnitIDs.getString("1")!!)
+        if (adUnitIDs.hasKey(AdNetwork.GOOGLE.value)) {
+            map[AdNetwork.GOOGLE] = adUnitIDs.getString(AdNetwork.GOOGLE.value)!!
         }
 
         return map
     }
-
 }

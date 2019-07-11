@@ -62,5 +62,4 @@ export default {
   addEventListener,
   removeEventListener,
   removeAllListeners,
-  simulatorId: 'SIMULATOR',
 };
