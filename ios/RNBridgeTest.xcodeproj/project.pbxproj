@@ -49,8 +49,6 @@
 		E0226ABE22D4CDA9009B616B /* RNASBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226ABA22D4CDA9009B616B /* RNASBannerView.m */; };
 		E0226AC122D4CFB5009B616B /* RCTConvert+ASAdSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226AC022D4CFB5009B616B /* RCTConvert+ASAdSize.m */; };
 		E0226AF622D60D5A009B616B /* AdNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226AF522D60D5A009B616B /* AdNetwork.swift */; };
-		E0DFC57922CA4CE000127FCD /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57822CA4CE000127FCD /* Alert.m */; };
-		E0DFC57B22CA4D6000127FCD /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DFC57A22CA4D6000127FCD /* Alert.swift */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -396,8 +394,6 @@
 		E0226AC022D4CFB5009B616B /* RCTConvert+ASAdSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+ASAdSize.m"; sourceTree = "<group>"; };
 		E0226AF522D60D5A009B616B /* AdNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdNetwork.swift; sourceTree = "<group>"; };
 		E0DFC57522CA400E00127FCD /* RNBridgeTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNBridgeTest-Bridging-Header.h"; sourceTree = "<group>"; };
-		E0DFC57822CA4CE000127FCD /* Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
-		E0DFC57A22CA4D6000127FCD /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F75F034A8BA1408E96415301 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
@@ -551,8 +547,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				E0DFC57822CA4CE000127FCD /* Alert.m */,
-				E0DFC57A22CA4D6000127FCD /* Alert.swift */,
 				E0DFC57522CA400E00127FCD /* RNBridgeTest-Bridging-Header.h */,
 				E0226A5822D38BA4009B616B /* RNAppSamuraiInterstitial.m */,
 				E0226A8022D38BBD009B616B /* RNAppSamuraiInterstitial.swift */,
@@ -1292,14 +1286,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0DFC57922CA4CE000127FCD /* Alert.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				E0226AB622D4B8AE009B616B /* RNAppSamuraiRewarded.m in Sources */,
 				E0226ABD22D4CDA9009B616B /* RNASBannerViewManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				E0226A5922D38BA4009B616B /* RNAppSamuraiInterstitial.m in Sources */,
 				E0226AC122D4CFB5009B616B /* RCTConvert+ASAdSize.m in Sources */,
-				E0DFC57B22CA4D6000127FCD /* Alert.swift in Sources */,
 				E0226ABE22D4CDA9009B616B /* RNASBannerView.m in Sources */,
 				E0226A8122D38BBD009B616B /* RNAppSamuraiInterstitial.swift in Sources */,
 				E0226AF622D60D5A009B616B /* AdNetwork.swift in Sources */,

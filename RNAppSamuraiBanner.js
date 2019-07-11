@@ -64,36 +64,34 @@ AppSamuraiBanner.propTypes = {
   ...ViewPropTypes,
 
   /**
-   * AdMob iOS library banner size constants
-   * (https://developers.google.com/admob/ios/banner)
+   * banner size constants
    * banner (320x50, Standard Banner for Phones and Tablets)
-   * largeBanner (320x100, Large Banner for Phones and Tablets)
    * mediumRectangle (300x250, IAB Medium Rectangle for Phones and Tablets)
-   * fullBanner (468x60, IAB Full-Size Banner for Tablets)
-   * leaderboard (728x90, IAB Leaderboard for Tablets)
-   * smartBannerPortrait (Screen width x 32|50|90, Smart Banner for Phones and Tablets)
-   * smartBannerLandscape (Screen width x 32|50|90, Smart Banner for Phones and Tablets)
    *
    * banner is default
    */
   adSize: string,
 
   /**
-   * AdMob ad unit ID
+   * AppSamurai ad unit ID
    */
   adUnitID: string,
+
+  /**
+   * Google Ads ad unit ID
+   */
+
   gadAdUnitID: string,
 
   /**
-   * Array of test devices. Use AdMobBanner.simulatorId for the simulator
+   * Array of test devices.
    */
   testDevices: arrayOf(string),
 
   /**
-   * AdMob iOS library events
+   * iOS library events
    */
   onSizeChange: func,
-
   onAdLoaded: func,
   onAdFailedToLoad: func,
   onAdOpened: func,

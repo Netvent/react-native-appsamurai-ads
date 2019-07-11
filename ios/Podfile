@@ -6,7 +6,6 @@ target 'RNBridgeTest' do
   use_frameworks!
 
   # Pods for RNBridgeTest
-  # Google AdMob tedt
   pod 'Google-Mobile-Ads-SDK'
   pod 'AppSamuraiAdSDK'
 end

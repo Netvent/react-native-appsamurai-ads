@@ -24,7 +24,7 @@ export default class App extends Component<{}> {
 
   componentWillUnmount() {
     AppSamuraiInterstitial.removeAllListeners();
-    // AppSamuraiRewarded.removeAllListeners();
+    AppSamuraiRewarded.removeAllListeners();
   }
 
   showInterstitial = () => {
@@ -32,9 +32,6 @@ export default class App extends Component<{}> {
   }
 
   loadInterstitial = () => {
-
-    AppSamuraiInterstitial.removeAllListeners();
-
     var adUnitIDs = {
       [AdNetwork.APPSAMURAI]: 'appsamurai-sample-android-interstitial-ad-id',
       [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/1033173712',
@@ -48,7 +45,6 @@ export default class App extends Component<{}> {
     AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
 
     AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
-    // AppSamuraiInterstitial.setAdUnitID("ca-app-pub-3940256099942544/1033173712");
     AppSamuraiInterstitial.addEventListener('adLoaded',
       () => this.setLog('AppSamuraiInterstitial adLoaded')
     );
@@ -71,11 +67,9 @@ export default class App extends Component<{}> {
     )
     .catch(error => {
         console.warn("An error occurred while requesting ad")
-        // console.warn(error)
+        console.warn(error)
       }
     );
-
-    // AppSamuraiInterstitial.requestAd().catch(error => console.warn(error));
   }
 
   showRewarded = () => {
@@ -92,7 +86,7 @@ export default class App extends Component<{}> {
       '026A278EFB88853437C158A1AB023B9E',
       'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
       'test-device-id-3'
-]
+    ]
 
     AppSamuraiRewarded.setTestDevices(testDeviceIDs);
     AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
@@ -132,11 +126,6 @@ export default class App extends Component<{}> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>React Native Test Bridge</Text>
-        <Button
-          onPress={this.onPress}
-          title="Press Me"
-          color="#841584"
-        />
         <Button
           onPress={this.loadInterstitial}
           title="Load Interstitial Ad"
@@ -186,21 +175,10 @@ export default class App extends Component<{}> {
               onAdLeftApplication={()=> {
                 this.setLog('AppSamuraiBanner onAdLeftApplication')
               }}
-              ref={el => (this._basicExample = el)}
             />
 
       </View>
     );
-  }
-
-  onPress = () => {
-    var platform = "Unknown"
-    if ( Platform.OS === 'android' ) {
-      platform = 'Android'
-    } else if (Platform.OS === 'ios') {
-      platform = 'iOS'
-    }
-    this.showAlert()
   }
 
   setLog(log){
@@ -223,18 +201,6 @@ export default class App extends Component<{}> {
     if ( Platform.OS === 'android' ) {
       this.showInterstitial()
     }
-  }
-
-  showAlert = () => {
-    this.setLog(`Showing alert view`);
-
-    NativeModules.Alert.show('Alert', 'Are you sure?', 'Yes', 'No', 
-    () => {
-      this.setLog(`Pressed Yes`);
-    }, 
-    () => {
-      this.setLog(`Pressed No`);
-    });
   }
 }
 

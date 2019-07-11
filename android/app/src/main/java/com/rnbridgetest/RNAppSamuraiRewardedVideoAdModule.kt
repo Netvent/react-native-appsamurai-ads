@@ -13,7 +13,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule
 import java.util.ArrayList
 import java.util.HashMap
 
-class RNAdMobRewardedVideoAdModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class RNAppSamuraiRewardedVideoAdModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     companion object {
         const val REACT_CLASS = "RNAppSamuraiRewarded"

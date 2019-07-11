@@ -17,7 +17,7 @@ class RNAppSamuraiPackage : ReactPackage {
         val modules = ArrayList<NativeModule>()
 
         modules.add(RNAppSamuraiInterstitialAdModule(reactContext))
-        modules.add(RNAdMobRewardedVideoAdModule(reactContext))
+        modules.add(RNAppSamuraiRewardedVideoAdModule(reactContext))
 
         return modules
     }
