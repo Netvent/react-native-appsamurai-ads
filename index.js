@@ -1,9 +1,12 @@
-/**
- * @format
- */
-
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
-
-AppRegistry.registerComponent(appName, () => App);
+/* eslint-disable global-require */
+module.exports = {
+  get AppSamuraiBanner() {
+    return require('./RNAppSamuraiBanner').default;
+  },
+  get AppSamuraiInterstitial() {
+    return require('./RNAppSamuraiInterstitial').default;
+  },
+  get AppSamuraiRewarded() {
+    return require('./RNAppSamuraiRewarded').default;
+  },
+};
