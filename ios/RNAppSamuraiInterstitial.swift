@@ -41,19 +41,19 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   
   @objc
   func setAdUnitIDs(_ adUnitIDs: [String: String]) {
-    print("Setting AdUnitIDs \(adUnitIDs)")
+    // print("Setting AdUnitIDs \(adUnitIDs)")
     self.adUnitIDs = adUnitIDs
   }
   
   @objc
   func setTestDevices(_ testDevices: Array<String>) {
-    print("Setting test devices \(testDevices)")
+    // print("Setting test devices \(testDevices)")
     self.testDevices = testDevices
   }
 
   @objc
   func requestAd(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock ) {
-    print("Requesting Ad")
+    // print("Requesting Ad")
     
     self.requestAdResolve = nil
     self.requestAdReject = nil
@@ -65,7 +65,7 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
       var asadUnitID: String? = nil
       var gadAdUnitID: String? = nil
       for (adnetwork, adUnitID) in adUnitIDs {
-        print("\(adnetwork): \(adUnitID)")
+        // print("\(adnetwork): \(adUnitID)")
         if ( adnetwork == AdNetwork.APPSAMURAI.rawValue ) {
           asadUnitID = adUnitID
         } else if ( adnetwork == AdNetwork.GOOGLE.rawValue ){
@@ -73,7 +73,7 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
         }
       }
 
-      print("APPSAMURAI: \(asadUnitID) GOOGLE: \(gadAdUnitID)")
+      // print("APPSAMURAI: \(asadUnitID) GOOGLE: \(gadAdUnitID)")
 
       if ( asadUnitID != nil ){
         asInterstitial = ASInterstitial(adUnitID: asadUnitID!, gadAdUnitID: gadAdUnitID)
@@ -94,7 +94,7 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
 
   @objc
   func showAd(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock ) {
-    print("Showing Ad")
+    // print("Showing Ad")
     
     if (asInterstitial?.isReady ?? false) && !(asInterstitial?.hasBeenUsed ?? true) {
       // Present ad
@@ -111,7 +111,7 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
 
   @objc
   func isReady(_ callback: RCTResponseSenderBlock) {
-    print("Is Ready?")
+    // print("Is Ready?")
     callback([asInterstitial?.isReady ?? false])
 
 //    callback(@[[NSNumber numberWithBool:[_interstitial isReady]]]);
@@ -125,7 +125,7 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   //MARK: - ASInterstitialDelegate functions
   // Notify when ad is succesfully received
   func interstitialDidReceiveAd(_ asInterstitial: ASInterstitial) {
-    print("interstitialDidReceiveAd")
+    // print("interstitialDidReceiveAd")
     self.sendEvent(withName: kEventAdLoaded, body: nil)
     if ( requestAdResolve != nil ){
       requestAdResolve!(nil)
@@ -134,7 +134,7 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   
   // Notify when ad is failed to receive, check ASAdRequestError types and console logs for details
   func interstitialDidFailToReceiveAd(_ asInterstitial: ASInterstitial, error: ASAdRequestError) {
-    print("interstitialDidFailToReceiveAd \(error.localizedDescription)")
+    // print("interstitialDidFailToReceiveAd \(error.localizedDescription)")
     self.sendEvent(withName: kEventAdFailedToLoad, body: error.localizedDescription)
     if (requestAdReject != nil){
       requestAdReject!("E_AD_REQUEST_FAILED", error.localizedDescription, error);
@@ -143,26 +143,26 @@ class RNAppSamuraiInterstitial: RCTEventEmitter, ASInterstitialDelegate {
   
   // Notify when ad will be presented screen on fullscreen
   func interstitialWillPresentScreen(_ asInterstitial: ASInterstitial) {
-    print("interstitialWillPresentScreen")
+    // print("interstitialWillPresentScreen")
     self.sendEvent(withName:kEventAdOpened, body:nil);
 
   }
   
   // Notify when ad will dismiss from screen
   func interstitialWillDismissScreen(_ asInterstitial: ASInterstitial) {
-    print("interstitialWillDismissScreen")
+    // print("interstitialWillDismissScreen")
 //    self.sendEvent(withName:kEventAdOpened, body:nil);
   }
   
   // Notify when ad dismissed from screen
   func interstitialDidDismissScreen(_ asInterstitial: ASInterstitial) {
-    print("interstitialDidDismissScreen")
+    // print("interstitialDidDismissScreen")
     self.sendEvent(withName:kEventAdClosed, body:nil);
   }
   
   // Notify when ad is clicked and another app will be opened
   func interstitialWillLeaveApplication(_ asInterstitial: ASInterstitial) {
-    print("interstitialWillLeaveApplication")
+    // print("interstitialWillLeaveApplication")
     self.sendEvent(withName:kEventAdLeftApplication, body:nil);
   }
 }

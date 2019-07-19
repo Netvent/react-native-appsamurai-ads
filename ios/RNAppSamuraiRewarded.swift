@@ -45,19 +45,19 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   
   @objc
   func setAdUnitIDs(_ adUnitIDs: [String: String]) {
-    print("Setting AdUnitIDs \(adUnitIDs)")
+    // print("Setting AdUnitIDs \(adUnitIDs)")
     self.adUnitIDs = adUnitIDs
   }
   
   @objc
   func setTestDevices(_ testDevices: Array<String>) {
-    print("Setting test devices \(testDevices)")
+    // print("Setting test devices \(testDevices)")
     self.testDevices = testDevices
   }
   
   @objc
   func requestAd(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock ) {
-    print("Requesting Ad")
+    // print("Requesting Ad")
     
     self.requestAdResolve = nil
     self.requestAdReject = nil
@@ -77,7 +77,7 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
         }
       }
       
-      print("APPSAMURAI: \(asadUnitID) GOOGLE: \(gadAdUnitID)")
+      // print("APPSAMURAI: \(asadUnitID) GOOGLE: \(gadAdUnitID)")
 
       if ( asadUnitID != nil ){
         asRewardBasedVideoAd = ASRewardBasedVideoAd(adUnitID: asadUnitID!, gadAdUnitID: gadAdUnitID)
@@ -97,7 +97,7 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   
   @objc
   func showAd(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock ) {
-    print("Showing Ad")
+    // print("Showing Ad")
     
     if (asRewardBasedVideoAd?.isReady ?? false) {
       // Present ad
@@ -114,7 +114,7 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   
   @objc
   func isReady(_ callback: RCTResponseSenderBlock) {
-    print("Is Ready?")
+    // print("Is Ready?")
     callback([asRewardBasedVideoAd?.isReady ?? false])
     
     //    callback(@[[NSNumber numberWithBool:[_interstitial isReady]]]);
@@ -128,7 +128,7 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   //MARK: - ASRewardBasedVideoAdDelegate functions
   // Notify when ad is succesfully received
   func rewardBasedVideoAdDidReceive(_ asRewardBasedAd: ASRewardBasedVideoAd) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdDidReceive")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdDidReceive")
     self.sendEvent(withName: kEventAdLoaded, body: nil)
     if ( requestAdResolve != nil ){
       requestAdResolve!(nil)
@@ -137,7 +137,7 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   
   // Notify when ad is failed to receive, check ASAdRequestError types and console logs for details
   func rewardBasedVideoAdDidFailToReceiveAd(_ asRewardBasedAd: ASRewardBasedVideoAd, error: ASAdRequestError) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdDidFailToReceiveAd \(error.localizedDescription)")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdDidFailToReceiveAd \(error.localizedDescription)")
     self.sendEvent(withName: kEventAdFailedToLoad, body: error.localizedDescription)
     if (requestAdReject != nil){
       requestAdReject!("E_AD_REQUEST_FAILED", error.localizedDescription, error);
@@ -146,37 +146,37 @@ class RNAppSamuraiRewarded: RCTEventEmitter, ASRewardBasedVideoAdDelegate {
   
   // Notify when ad is opened
   func rewardBasedVideoAdDidOpen(_ asRewardBasedAd: ASRewardBasedVideoAd) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdDidOpen")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdDidOpen")
     self.sendEvent(withName:kEventAdOpened, body:nil);
   }
   
   // Notify when ad is closed
   func rewardBasedVideoAdDidClose(_ asRewardBasedAd: ASRewardBasedVideoAd) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdDidClose")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdDidClose")
     self.sendEvent(withName:kEventAdClosed, body:nil);
   }
   
   // Notify when video ad playback is started
   func rewardBasedVideoAdStartPlaying(_ asRewardBasedAd: ASRewardBasedVideoAd) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdStartPlaying")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdStartPlaying")
     self.sendEvent(withName:kEventVideoStarted, body:nil);
   }
   
   // Notify when video ad playback is completed
   func rewardBasedVideoAdCompletePlaying(_ asRewardBasedAd: ASRewardBasedVideoAd) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdCompletePlaying")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdCompletePlaying")
     self.sendEvent(withName:kEventVideoCompleted, body:nil);
   }
   
   // Notify when ad reward is succesfully received
   func rewardBasedVideoAdDidReward(_ asRewardBasedAd: ASRewardBasedVideoAd) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdDidReward")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdDidReward")
     self.sendEvent(withName:kEventRewarded, body:nil);
   }
   
   // Notify when ad is clicked and another app will be opened
   func rewardBasedVideoAdWillLeaveApplication(_ asRewardBasedAd: ASRewardBasedVideoAd) {
-    print("RNAppSamuraiRewarded: rewardBasedVideoAdWillLeaveApplication")
+    // print("RNAppSamuraiRewarded: rewardBasedVideoAdWillLeaveApplication")
     self.sendEvent(withName:kEventAdLeftApplication, body:nil);
   }
 }

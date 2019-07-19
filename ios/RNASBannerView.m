@@ -57,15 +57,15 @@
 
   ASAdRequest *request = [[ASAdRequest alloc] init];
   request.testDevices = _testDevices;
-  for (NSString *testDevice in request.testDevices) {
-    NSLog(@"Test Device: %@",testDevice);
-  }
+//   for (NSString *testDevice in request.testDevices) {
+//     NSLog(@"Test Device: %@",testDevice);
+//   }
   [_bannerView loadAdWithAdRequest:request];
 }
 
 - (void)setTestDevices:(NSArray *)testDevices
 {
-  NSLog(@"Setting Test Devices");
+//   NSLog(@"Setting Test Devices");
   _testDevices = testDevices;
 }
 
