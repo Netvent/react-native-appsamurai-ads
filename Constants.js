@@ -3,4 +3,4 @@ const AdNetwork = {
     GOOGLE: '1'
 };
 
-export {AdNetwork};
+module.exports = {AdNetwork};

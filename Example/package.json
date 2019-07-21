@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "16.8.6",
     "react-native": "0.60.3",
-    "react-native-appsamurai-ads": "file:../react-native-appsamurai-ads-0.0.7.tgz"
+    "react-native-appsamurai-ads": "file:../react-native-appsamurai-ads-0.0.10.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",

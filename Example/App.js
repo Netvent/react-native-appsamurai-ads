@@ -29,55 +29,14 @@ import {
   AppSamuraiBanner,
   AppSamuraiRewarded,
   AppSamuraiInterstitial,
+  AdNetwork
 } from 'react-native-appsamurai-ads';
 
 
 export default class App extends Component<{}> {
-
-  showInterstitial = () => {
-    AppSamuraiInterstitial.showAd();
-  }
-
-  loadInterstitial = () => {
-    var adUnitIDs = {
-      '0': 'appsamurai-sample-android-interstitial-ad-id',
-      '1': 'ca-app-pub-3940256099942544/1033173712',
-    }
-    var testDeviceIDs = [
-      '026A278EFB88853437C158A1AB023B9E',
-      'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
-      'test-device-id-3'
-    ]
-
-    AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
-
-    AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
-    AppSamuraiInterstitial.addEventListener('adLoaded',
-      // () => this.setLog('AppSamuraiInterstitial adLoaded')
-    );
-    AppSamuraiInterstitial.addEventListener('adFailedToLoad',
-      // () => this.setLog('AppSamuraiInterstitial adFailedToLoad')
-    );
-    AppSamuraiInterstitial.addEventListener('adOpened',
-      // () => this.setLog('AppSamuraiInterstitial adOpened')
-    );
-    AppSamuraiInterstitial.addEventListener('adClosed',
-      // () => this.setLog('AppSamuraiInterstitial adClosed')
-    );
-    AppSamuraiInterstitial.addEventListener('adLeftApplication',
-      // () => this.setLog('AppSamuraiInterstitial adLeftApplication')
-    );
-
-    AppSamuraiInterstitial.requestAd()
-    .then(() => 
-     AppSamuraiInterstitial.showAd()
-    )
-    .catch(error => {
-        console.warn("An error occurred while requesting ad")
-        console.warn(error)
-      }
-    );
-  }
+  state = { 
+    log: ""
+  };
 
   render() {
     return(
@@ -87,28 +46,166 @@ export default class App extends Component<{}> {
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
-            <Header />
             {global.HermesInternal == null ? null : (
               <View style={styles.engine}>
                 <Text style={styles.footer}>Engine: Hermes</Text>
               </View>
             )}
             <View style={styles.body}>
-              <Button
-                onPress={this.loadInterstitial}
-                title="Load Interstitial Ad"
-                color="#841584"
+              <Text style={styles.log}>{this.state.log}</Text>
+              <View style={styles.sectionContainer}>
+                <Button
+                  onPress={this.loadInterstitial}
+                  title="Load Interstitial Ad"
+                  color="#841584"
+                />
+                <Button
+                  onPress={this.showInterstitial}
+                  title="Show Interstitial Ad"
+                  color="#841584"
+                />
+              </View>
+              <View style={styles.sectionContainer}>
+                <Button
+                  onPress={this.loadRewarded}
+                  title="Load Rewarded Ad"
+                  color="#841584"
+                />
+                <Button
+                  onPress={this.showRewarded}
+                  title="Show Rewarded Ad"
+                  color="#841584"
+                />
+              </View>
+              <AppSamuraiBanner
+                adSize="banner"
+                adUnitID="appsamurai-sample-android-banner-ad-id"
+                gadAdUnitID="ca-app-pub-3940256099942544/6300978111"
+                testDevices={[
+                  '026A278EFB88853437C158A1AB023B9E',
+                  'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
+                  'test-device-id-3'
+                ]}
+                onAdLoaded={()=> {
+                  this.setLog('AppSamuraiBanner adLoaded');
+                }}
+                onAdFailedToLoad={()=> {
+                  this.setLog('AppSamuraiBanner onAdFailedToLoad');
+                }}
+                onAdOpened={()=> {
+                  this.setLog('AppSamuraiBanner onAdOpened');
+                }}
+                onAdClosed={()=> {
+                  this.setLog('AppSamuraiBanner onAdClosed');
+                }}
+                onAdLeftApplication={()=> {
+                  this.setLog('AppSamuraiBanner onAdLeftApplication');
+                }}
               />
-              <Button
-                onPress={this.showInterstitial}
-                title="Show Interstitial Ad"
-                color="#841584"
-              />              
             </View>
           </ScrollView>
         </SafeAreaView>
       </Fragment>
     )
+  }
+
+  showInterstitial = () => {
+    AppSamuraiInterstitial.showAd();
+  }
+
+  loadInterstitial = () => {
+    var adUnitIDs = {
+      [AdNetwork.APPSAMURAI]: 'appsamurai-sample-android-interstitial-ad-id',
+      [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/1033173712',
+    };
+    var testDeviceIDs = [
+      '026A278EFB88853437C158A1AB023B9E',
+      'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
+      'test-device-id-3'
+    ];
+
+    AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
+
+    AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
+    AppSamuraiInterstitial.addEventListener('adLoaded',
+      () => this.setLog('AppSamuraiInterstitial adLoaded');
+    );
+    AppSamuraiInterstitial.addEventListener('adFailedToLoad',
+      () => this.setLog('AppSamuraiInterstitial adFailedToLoad');
+    );
+    AppSamuraiInterstitial.addEventListener('adOpened',
+      () => this.setLog('AppSamuraiInterstitial adOpened');
+    );
+    AppSamuraiInterstitial.addEventListener('adClosed',
+      () => this.setLog('AppSamuraiInterstitial adClosed');
+    );
+    AppSamuraiInterstitial.addEventListener('adLeftApplication',
+      () => this.setLog('AppSamuraiInterstitial adLeftApplication');
+    );
+
+    AppSamuraiInterstitial.requestAd()
+    .then(() => 
+     AppSamuraiInterstitial.showAd();
+    )
+    .catch(error => {
+        console.warn("An error occurred while requesting ad");
+        console.warn(error);
+      }
+    );
+  }
+
+  showRewarded = () => {
+    AppSamuraiRewarded.showAd();
+  }
+
+  loadRewarded = () => {
+    var adUnitIDs = {
+      [AdNetwork.APPSAMURAI]: 'appsamurai-sample-android-rewardbasedvideo-ad-id',
+      [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/5224354917'
+    };
+
+    var testDeviceIDs = [
+      '026A278EFB88853437C158A1AB023B9E',
+      'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
+      'test-device-id-3'
+    ];
+
+    AppSamuraiRewarded.setTestDevices(testDeviceIDs);
+    AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
+    AppSamuraiRewarded.addEventListener('adLoaded',
+      () => this.setLog('AppSamuraiRewarded adLoaded');
+    );
+    AppSamuraiRewarded.addEventListener('adFailedToLoad',
+      () => this.setLog('AppSamuraiRewarded adFailedToLoad');
+    );
+    AppSamuraiRewarded.addEventListener('adOpened',
+      () => this.setLog('AppSamuraiRewarded adOpened');
+    );
+    AppSamuraiRewarded.addEventListener('adClosed',
+      () => this.setLog('AppSamuraiRewarded adClosed');
+    );
+    AppSamuraiRewarded.addEventListener('adLeftApplication',
+      () => this.setLog('AppSamuraiRewarded adLeftApplication');
+    );
+    AppSamuraiRewarded.addEventListener('rewarded',
+      () => this.setLog('AppSamuraiRewarded rewarded');
+    );
+    AppSamuraiRewarded.addEventListener('videoStarted',
+      () => this.setLog('AppSamuraiRewarded videoStarted');
+    );
+    AppSamuraiRewarded.addEventListener('videoCompleted',
+      () => this.setLog('AppSamuraiRewarded videoCompleted');
+    );
+
+    AppSamuraiRewarded.requestAd().catch(error => console.warn(error));
+  }
+
+  setLog(log){
+    this.setState({
+      log: log
+    })
+
+    console.log(log)
   }
 };
 
@@ -122,10 +219,12 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: Colors.white,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   sectionContainer: {
     marginTop: 32,
-    paddingHorizontal: 24,
   },
   sectionTitle: {
     fontSize: 24,
@@ -149,6 +248,10 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  log: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  }
 });
 
 // export default App;
