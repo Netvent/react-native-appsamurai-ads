@@ -63,19 +63,29 @@ Adding as react element
     }}
 />
 ```
+
 `adUnitID`: AppSamurai Ads Ad Unit ID 
+
 `gadAdUnitID`: Google AdMob Ad Unit ID 
+
 `testDevices`: Array of test device IDs both for AppSamurai Ads and Google AdMob
+
 #### Supported Banner Sizes
 Use `adSize` property for banner size. Default size is banner (320x50)
+
 `banner`: 320x50, Standard Banner for Phones and Tablets
+
 `mediumRectangle`: 300x250, IAB Medium Rectangle for Phones and Tablets
 
 #### Callback Methods
 `onAdLoaded`: Called when an ad is received.
+
 `onAdFailedToLoad`: Called when an ad request failed.
+
 `onAdOpened`: Called when an ad opens an overlay that covers the screen.
+
 `onAdClosed`: Called when the user is about to return to the application after clicking on an ad.
+
 `onAdLeftApplication`: Called when a user click will open another app (such as the App Store), backgrounding the current app.
 
 ### Interstitial
@@ -137,19 +147,30 @@ AppSamuraiInterstitial.requestAd()
 
 #### Event lists
 `adLoaded`: Called when an ad is received.
+
 `adFailedToLoad`: Called when an ad request failed.
+
 `adOpened`: Called when an ad opens an overlay that covers the screen.
+
 `adClosed`: Called when the user is about to return to the application after clicking on an ad.
+
 `adLeftApplication`: Called when a user click will open another app (such as the App Store), backgrounding the current app.
 
 #### Methods
 `setAdUnitIDs(adUnitIDs)`: Sets the AdUnit IDs for both AppSamurai Ads and Google AdMob
+
 `setTestDevices(testDeviceIDs)`: Sets the devices which are served test ads.
+
 `requestAd`: Requests an interstitial and returns a promise, which resolves on load and rejects on error.
+
 `showAd`: Shows an interstitial and returns a promise, which resolves when an ad is going to be shown, rejects when the ad is not ready to be shown.
+
 `isReady(callback)`: Calls callback with a boolean value whether the interstitial is ready to be shown.
+
 `addEventListener`: Adds an event to listener
+
 `removeEventListener`: Removes an event from listener
+
 `removeAllListeners`: Removes all events from listener
 
 ### Rewarded Video
@@ -223,22 +244,36 @@ AppSamuraiRewarded.requestAd()
 
 #### Event lists
 `adLoaded`: Called when an ad is received.
+
 `adFailedToLoad`: Called when an ad request failed.
+
 `adOpened`: Called when an ad opens an overlay that covers the screen.
+
 `adClosed`: Called when the user is about to return to the application after clicking on an ad.
+
 `adLeftApplication`: Called when a user click will open another app (such as the App Store), backgrounding the current app.
+
 `rewarded`: Called when the user eard reward.
+
 `videoStarted`: Called when the video is started.
+
 `videoCompleted`: Called when the video is completed.
 
 #### Methods
 `setAdUnitIDs(adUnitIDs)`: Sets the AdUnit IDs for both AppSamurai Ads and Google AdMob
+
 `setTestDevices(testDeviceIDs)`: Sets the devices which are served test ads.
+
 `requestAd`: Requests an interstitial and returns a promise, which resolves on load and rejects on error.
+
 `showAd`: Shows an interstitial and returns a promise, which resolves when an ad is going to be shown, rejects when the ad is not ready to be shown.
+
 `isReady(callback)`: Calls callback with a boolean value whether the interstitial is ready to be shown.
+
 `addEventListener`: Adds an event to listener
+
 `removeEventListener`: Removes an event from listener
+
 `removeAllListeners`: Removes all events from listener
 
 ## Credits
