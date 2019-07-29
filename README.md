@@ -103,9 +103,9 @@ var adUnitIDs = {
   [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/1033173712',
 }
 var testDeviceIDs = [
-  '026A278EFB88853437C158A1AB023B9E',
-  'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
-  'test-device-id-3'
+  '<test-device-id-1>',
+  '<test-device-id-2>',
+  '<test-device-id-3>'
 ]
 
 AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
@@ -190,9 +190,9 @@ var adUnitIDs = {
 };
 
 var testDeviceIDs = [
-  '026A278EFB88853437C158A1AB023B9E',
-  'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
-  'test-device-id-3'
+  '<test-device-id-1>',
+  '<test-device-id-2>',
+  '<test-device-id-3>'
 ];
 
 AppSamuraiRewarded.setTestDevices(testDeviceIDs);
