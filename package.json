@@ -1,8 +1,8 @@
 {
   "name": "react-native-appsamurai-ads",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A react-native component for AppSamurai Ads",
-  "author": "Olcay Ay <olcayay@gmail.com>",
+  "author": "App Samurai Mobile Team <mobile@appsamurai.com>",
   "main": "index.js",
   "license": "BSD-2-Clause",
   "private": false,
