@@ -58,3 +58,5 @@ buck-out/
 
 # General
 *.tgz
+
+Example/package-lock.json

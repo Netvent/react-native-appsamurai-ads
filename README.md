@@ -1,4 +1,4 @@
-A react-native module for AppSamurai Ads. 
+A react-native module for AppSamurai Ads.
 
 With this module you can use AppSamurai Ads and Google AdMob together without an extra configuration. Supported ad formats are Banner, Interstitial and Rewarded Video. The banner type is implemented as components while the interstitial and rewarded video have an imperative API.
 
@@ -64,9 +64,9 @@ Adding as react element
 />
 ```
 
-`adUnitID`: AppSamurai Ads Ad Unit ID 
+`adUnitID`: AppSamurai Ads Ad Unit ID
 
-`gadAdUnitID`: Google AdMob Ad Unit ID 
+`gadAdUnitID`: Google AdMob Ad Unit ID
 
 `testDevices`: Array of test device IDs both for AppSamurai Ads and Google AdMob
 
@@ -111,19 +111,19 @@ var testDeviceIDs = [
 AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
 AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
 AppSamuraiInterstitial.addEventListener('adLoaded',
-  () => this.setLog('AppSamuraiInterstitial adLoaded');
+  () => this.setLog('AppSamuraiInterstitial adLoaded')
 );
 AppSamuraiInterstitial.addEventListener('adFailedToLoad',
-  () => this.setLog('AppSamuraiInterstitial adFailedToLoad');
+  () => this.setLog('AppSamuraiInterstitial adFailedToLoad')
 );
 AppSamuraiInterstitial.addEventListener('adOpened',
-  () => this.setLog('AppSamuraiInterstitial adOpened');
+  () => this.setLog('AppSamuraiInterstitial adOpened')
 );
 AppSamuraiInterstitial.addEventListener('adClosed',
-  () => this.setLog('AppSamuraiInterstitial adClosed');
+  () => this.setLog('AppSamuraiInterstitial adClosed')
 );
 AppSamuraiInterstitial.addEventListener('adLeftApplication',
-  () => this.setLog('AppSamuraiInterstitial adLeftApplication');
+  () => this.setLog('AppSamuraiInterstitial adLeftApplication')
 );
 
 AppSamuraiInterstitial.requestAd();
@@ -136,8 +136,8 @@ AppSamuraiInterstitial.showAd();
 Also you can show ad with promise when it is ready
 ``` js
 AppSamuraiInterstitial.requestAd()
-.then(() => 
-    AppSamuraiInterstitial.showAd();
+.then(() =>
+    AppSamuraiInterstitial.showAd()
 )
 .catch(error => {
         console.warn("An error occurred while requesting ad");
@@ -198,28 +198,28 @@ var testDeviceIDs = [
 AppSamuraiRewarded.setTestDevices(testDeviceIDs);
 AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
 AppSamuraiRewarded.addEventListener('adLoaded',
-  () => this.setLog('AppSamuraiRewarded adLoaded');
+  () => this.setLog('AppSamuraiRewarded adLoaded')
 );
 AppSamuraiRewarded.addEventListener('adFailedToLoad',
-  () => this.setLog('AppSamuraiRewarded adFailedToLoad');
+  () => this.setLog('AppSamuraiRewarded adFailedToLoad')
 );
 AppSamuraiRewarded.addEventListener('adOpened',
-  () => this.setLog('AppSamuraiRewarded adOpened');
+  () => this.setLog('AppSamuraiRewarded adOpened')
 );
 AppSamuraiRewarded.addEventListener('adClosed',
-  () => this.setLog('AppSamuraiRewarded adClosed');
+  () => this.setLog('AppSamuraiRewarded adClosed')
 );
 AppSamuraiRewarded.addEventListener('adLeftApplication',
-  () => this.setLog('AppSamuraiRewarded adLeftApplication');
+  () => this.setLog('AppSamuraiRewarded adLeftApplication')
 );
 AppSamuraiRewarded.addEventListener('rewarded',
-  () => this.setLog('AppSamuraiRewarded rewarded');
+  () => this.setLog('AppSamuraiRewarded rewarded')
 );
 AppSamuraiRewarded.addEventListener('videoStarted',
-  () => this.setLog('AppSamuraiRewarded videoStarted');
+  () => this.setLog('AppSamuraiRewarded videoStarted')
 );
 AppSamuraiRewarded.addEventListener('videoCompleted',
-  () => this.setLog('AppSamuraiRewarded videoCompleted');
+  () => this.setLog('AppSamuraiRewarded videoCompleted')
 );
 
 AppSamuraiRewarded.requestAd();
@@ -233,8 +233,8 @@ AppSamuraiRewarded.showAd();
 Also you can show ad with promise when it is ready
 ``` js
 AppSamuraiRewarded.requestAd()
-.then(() => 
-    AppSamuraiRewarded.showAd();
+.then(() =>
+    AppSamuraiRewarded.showAd()
 )
 .catch(error => {
         console.warn("An error occurred while requesting ad");
