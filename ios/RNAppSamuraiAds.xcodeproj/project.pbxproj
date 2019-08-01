@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E0226B6822DF574C009B616B /* AdNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226B6722DF574C009B616B /* AdNetwork.swift */; };
+		A182789022F2F323007452E3 /* RNAppSamuraiInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = A182788F22F2F323007452E3 /* RNAppSamuraiInterstitial.m */; };
+		A182789322F2F424007452E3 /* RNAppSamuraiRewarded.m in Sources */ = {isa = PBXBuildFile; fileRef = A182789222F2F424007452E3 /* RNAppSamuraiRewarded.m */; };
 		E0226B6B22DF5767009B616B /* RCTConvert+ASAdSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226B6A22DF5767009B616B /* RCTConvert+ASAdSize.m */; };
-		E0226B7422DF5778009B616B /* RNAppSamuraiInterstitial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226B6D22DF5777009B616B /* RNAppSamuraiInterstitial.swift */; };
-		E0226B7522DF5778009B616B /* RNAppSamuraiRewarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0226B6E22DF5777009B616B /* RNAppSamuraiRewarded.swift */; };
 		E0226B7622DF5778009B616B /* RNASBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226B7022DF5777009B616B /* RNASBannerView.m */; };
-		E0226B7722DF5778009B616B /* RNAppSamuraiRewarded.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226B7122DF5778009B616B /* RNAppSamuraiRewarded.m */; };
-		E0226B7822DF5778009B616B /* RNAppSamuraiInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226B7222DF5778009B616B /* RNAppSamuraiInterstitial.m */; };
 		E0226B7922DF5778009B616B /* RNASBannerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E0226B7322DF5778009B616B /* RNASBannerViewManager.m */; };
 /* End PBXBuildFile section */
 
@@ -31,17 +28,16 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNAppSamuraiAds.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAppSamuraiAds.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A182788E22F2F323007452E3 /* RNAppSamuraiInterstitial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAppSamuraiInterstitial.h; sourceTree = "<group>"; };
+		A182788F22F2F323007452E3 /* RNAppSamuraiInterstitial.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAppSamuraiInterstitial.m; sourceTree = "<group>"; };
+		A182789122F2F424007452E3 /* RNAppSamuraiRewarded.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAppSamuraiRewarded.h; sourceTree = "<group>"; };
+		A182789222F2F424007452E3 /* RNAppSamuraiRewarded.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAppSamuraiRewarded.m; sourceTree = "<group>"; };
 		E0226B6622DF574C009B616B /* RNAppSamuraiAds-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNAppSamuraiAds-Bridging-Header.h"; sourceTree = "<group>"; };
-		E0226B6722DF574C009B616B /* AdNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdNetwork.swift; sourceTree = "<group>"; };
 		E0226B6922DF5767009B616B /* RCTConvert+ASAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+ASAdSize.h"; sourceTree = "<group>"; };
 		E0226B6A22DF5767009B616B /* RCTConvert+ASAdSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+ASAdSize.m"; sourceTree = "<group>"; };
 		E0226B6C22DF5777009B616B /* RNASBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNASBannerView.h; sourceTree = "<group>"; };
-		E0226B6D22DF5777009B616B /* RNAppSamuraiInterstitial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNAppSamuraiInterstitial.swift; sourceTree = "<group>"; };
-		E0226B6E22DF5777009B616B /* RNAppSamuraiRewarded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNAppSamuraiRewarded.swift; sourceTree = "<group>"; };
 		E0226B6F22DF5777009B616B /* RNASBannerViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNASBannerViewManager.h; sourceTree = "<group>"; };
 		E0226B7022DF5777009B616B /* RNASBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNASBannerView.m; sourceTree = "<group>"; };
-		E0226B7122DF5778009B616B /* RNAppSamuraiRewarded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAppSamuraiRewarded.m; sourceTree = "<group>"; };
-		E0226B7222DF5778009B616B /* RNAppSamuraiInterstitial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAppSamuraiInterstitial.m; sourceTree = "<group>"; };
 		E0226B7322DF5778009B616B /* RNASBannerViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNASBannerViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,17 +63,16 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				E0226B6722DF574C009B616B /* AdNetwork.swift */,
-				E0226B6922DF5767009B616B /* RCTConvert+ASAdSize.h */,
-				E0226B6A22DF5767009B616B /* RCTConvert+ASAdSize.m */,
-				E0226B7222DF5778009B616B /* RNAppSamuraiInterstitial.m */,
-				E0226B6D22DF5777009B616B /* RNAppSamuraiInterstitial.swift */,
-				E0226B7122DF5778009B616B /* RNAppSamuraiRewarded.m */,
-				E0226B6E22DF5777009B616B /* RNAppSamuraiRewarded.swift */,
 				E0226B6C22DF5777009B616B /* RNASBannerView.h */,
 				E0226B7022DF5777009B616B /* RNASBannerView.m */,
 				E0226B6F22DF5777009B616B /* RNASBannerViewManager.h */,
 				E0226B7322DF5778009B616B /* RNASBannerViewManager.m */,
+				E0226B6922DF5767009B616B /* RCTConvert+ASAdSize.h */,
+				E0226B6A22DF5767009B616B /* RCTConvert+ASAdSize.m */,
+				A182788E22F2F323007452E3 /* RNAppSamuraiInterstitial.h */,
+				A182788F22F2F323007452E3 /* RNAppSamuraiInterstitial.m */,
+				A182789122F2F424007452E3 /* RNAppSamuraiRewarded.h */,
+				A182789222F2F424007452E3 /* RNAppSamuraiRewarded.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				E0226B6622DF574C009B616B /* RNAppSamuraiAds-Bridging-Header.h */,
 			);
@@ -141,14 +136,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0226B7422DF5778009B616B /* RNAppSamuraiInterstitial.swift in Sources */,
-				E0226B7522DF5778009B616B /* RNAppSamuraiRewarded.swift in Sources */,
 				E0226B7622DF5778009B616B /* RNASBannerView.m in Sources */,
-				E0226B7822DF5778009B616B /* RNAppSamuraiInterstitial.m in Sources */,
-				E0226B6822DF574C009B616B /* AdNetwork.swift in Sources */,
-				E0226B7722DF5778009B616B /* RNAppSamuraiRewarded.m in Sources */,
 				E0226B7922DF5778009B616B /* RNASBannerViewManager.m in Sources */,
 				E0226B6B22DF5767009B616B /* RCTConvert+ASAdSize.m in Sources */,
+				A182789322F2F424007452E3 /* RNAppSamuraiRewarded.m in Sources */,
+				A182789022F2F323007452E3 /* RNAppSamuraiInterstitial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,7 +28,7 @@ class AppSamuraiBanner extends Component {
   loadBanner() {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(this._bannerView),
-      UIManager.RNASBannerView.Commands.loadBanner,
+      UIManager.getViewManagerConfig('RNASBannerView').Commands.loadBanner,
       null,
     );
   }
