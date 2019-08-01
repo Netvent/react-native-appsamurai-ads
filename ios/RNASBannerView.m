@@ -10,18 +10,15 @@
 #import "RCTLog.h"
 #endif
 
-@implementation RNASBannerView
-{
+@implementation RNASBannerView {
     ASBannerView *_bannerView;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     _bannerView.delegate = nil;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         super.backgroundColor = [UIColor clearColor];
         UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
@@ -36,14 +33,12 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-missing-super-calls"
-- (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
-{
+- (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex {
     RCTLogError(@"RNASBannerView cannot have subviews");
 }
 #pragma clang diagnostic pop
 
-- (void)loadBanner
-{
+- (void)loadBanner {
     if(self.onSizeChange) {
       CGSize size =  CGSizeMake(320, 50);
 //      CGSize size = CGSizeFromGADAdSize(_bannerView.adSize);
@@ -57,64 +52,32 @@
 
   ASAdRequest *request = [[ASAdRequest alloc] init];
   request.testDevices = _testDevices;
-//   for (NSString *testDevice in request.testDevices) {
-//     NSLog(@"Test Device: %@",testDevice);
-//   }
   [_bannerView loadAdWithAdRequest:request];
 }
 
-- (void)setTestDevices:(NSArray *)testDevices
-{
-//   NSLog(@"Setting Test Devices");
+- (void)setTestDevices:(NSArray *)testDevices { 
   _testDevices = testDevices;
 }
 
--(void)layoutSubviews
-{
+-(void)layoutSubviews {
     [super layoutSubviews];
     _bannerView.frame = self.bounds;
 }
 
-# pragma mark GADBannerViewDelegate
-
-/// Tells the delegate an ad request loaded an ad.
-- (void)adViewDidReceiveAd:(__unused ASBannerView *)adView
-{
+# pragma mark ASBannerViewDelegate
+- (void)adViewDidReceiveAd:(ASBannerView * _Nonnull)asBannerView {
    if (self.onAdLoaded) {
        self.onAdLoaded(@{});
    }
 }
 
-/// Tells the delegate an ad request failed.
-- (void)adView:(__unused ASBannerView *)adView
-didFailToReceiveAdWithError:(ASAdRequestError *)error
-{
+- (void)adViewDidFailToReceiveAd:(ASBannerView * _Nonnull)asBannerView error:(ASAdRequestError * _Nonnull)error {
     if (self.onAdFailedToLoad) {
         self.onAdFailedToLoad(@{ @"error": @{ @"message": [error localizedDescription] } });
     }
 }
 
-/// Tells the delegate that a full screen view will be presented in response
-/// to the user clicking on an ad.
-- (void)adViewWillPresentScreen:(__unused ASBannerView *)adView
-{
-    if (self.onAdOpened) {
-        self.onAdOpened(@{});
-    }
-}
-
-/// Tells the delegate that the full screen view will be dismissed.
-- (void)adViewWillDismissScreen:(__unused ASBannerView *)adView
-{
-    if (self.onAdClosed) {
-        self.onAdClosed(@{});
-    }
-}
-
-/// Tells the delegate that a user click will open another app (such as
-/// the App Store), backgrounding the current app.
-- (void)adViewWillLeaveApplication:(__unused ASBannerView *)adView
-{
+- (void)adViewWillLeaveApplication:(ASBannerView * _Nonnull)asBannerView {
     if (self.onAdLeftApplication) {
         self.onAdLeftApplication(@{});
     }
