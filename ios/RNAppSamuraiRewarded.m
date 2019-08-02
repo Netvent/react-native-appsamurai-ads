@@ -25,8 +25,9 @@ static NSString *const kEventVideoCompleted = @"rewardedVideoAdVideoCompleted";
 
 @implementation RNAppSamuraiRewarded
 {
-    ASRewardBasedVideoAd *asRewardBasedVideoAd;
+    ASRewardBasedVideoAd *_asRewardBasedVideoAd;
     NSString *_adUnitID;
+    NSString *_gadAdUnitID;
     NSArray *_testDevices;
     RCTPromiseResolveBlock _requestAdResolve;
     RCTPromiseRejectBlock _requestAdReject;
@@ -62,6 +63,11 @@ RCT_EXPORT_METHOD(setAdUnitID:(NSString *)adUnitID)
     _adUnitID = adUnitID;
 }
 
+RCT_EXPORT_METHOD(setGADAdUnitID:(NSString *)gadAdUnitID)
+{
+    _gadAdUnitID = gadAdUnitID;
+}
+
 RCT_EXPORT_METHOD(setTestDevices:(NSArray *)testDevices)
 {
     _testDevices = testDevices;
@@ -71,17 +77,21 @@ RCT_EXPORT_METHOD(requestAd:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromise
 {
     _requestAdResolve = nil;
     _requestAdReject = nil;
-    
+
     if (_asRewardBasedVideoAd == nil) {
         _requestAdResolve = resolve;
         _requestAdReject = reject;
-        
-        _asRewardBasedVideoAd = [[ASRewardBasedVideoAd alloc] initWithAdUnitID:adUnitID];
+
+        if (_gadAdUnitID != nil) {
+            _asRewardBasedVideoAd = [[ASRewardBasedVideoAd alloc] initWithAdUnitID:_adUnitID gadAdUnitID:_gadAdUnitID];
+        } else {
+            _asRewardBasedVideoAd = [[ASRewardBasedVideoAd alloc] initWithAdUnitID:_adUnitID];
+        }
         _asRewardBasedVideoAd.delegate = self;
-        
+
         ASAdRequest *adRequest = [[ASAdRequest alloc] init];
-        request.testDevices = _testDevices;
-        [_asInterstitial loadAdWithAdRequest:adRequest];
+        adRequest.testDevices = _testDevices;
+        [_asRewardBasedVideoAd loadAdWithAdRequest:adRequest];
     } else {
         reject(@"E_AD_ALREADY_LOADED", @"Ad is already loaded.", nil);
     }
@@ -112,7 +122,7 @@ RCT_EXPORT_METHOD(isReady:(RCTResponseSenderBlock)callback)
 - (void)rewardBasedVideoAdDidFailToReceiveAd:(ASRewardBasedVideoAd * _Nonnull)asRewardBasedAd error:(ASAdRequestError * _Nonnull)error {
     NSDictionary *jsError = RCTJSErrorFromCodeMessageAndNSError(@"E_AD_REQUEST_FAILED", error.localizedDescription, error);
     [self sendEventWithName:kEventAdFailedToLoad body:jsError];
-    
+
     _requestAdReject(@"E_AD_REQUEST_FAILED", error.localizedDescription, error);
 }
 

@@ -8,8 +8,5 @@ module.exports = {
   },
   get AppSamuraiRewarded() {
     return require('./RNAppSamuraiRewarded').default;
-  },
-  get AdNetwork() {
-    return require('./Constants').AdNetwork;
-  },
+  }
 };

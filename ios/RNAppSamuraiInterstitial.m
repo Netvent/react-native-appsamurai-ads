@@ -24,6 +24,7 @@ static NSString *const kEventAdLeftApplication = @"interstitialAdLeftApplication
 {
     ASInterstitial *_asInterstitial;
     NSString *_adUnitID;
+    NSString *_gadAdUnitID;
     NSArray *_testDevices;
     RCTPromiseResolveBlock _requestAdResolve;
     RCTPromiseRejectBlock _requestAdReject;
@@ -56,6 +57,11 @@ RCT_EXPORT_METHOD(setAdUnitID:(NSString *)adUnitID)
     _adUnitID = adUnitID;
 }
 
+RCT_EXPORT_METHOD(setGADAdUnitID:(NSString *)gadAdUnitID)
+{
+    _gadAdUnitID = gadAdUnitID;
+}
+
 RCT_EXPORT_METHOD(setTestDevices:(NSArray *)testDevices)
 {
     _testDevices = testDevices;
@@ -66,15 +72,19 @@ RCT_EXPORT_METHOD(requestAd:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromise
     _requestAdResolve = nil;
     _requestAdReject = nil;
 
-    if ([_asInterstitial hasBeenUsed] || _interstitial == nil) {
+    if ([_asInterstitial hasBeenUsed] || _asInterstitial == nil) {
         _requestAdResolve = resolve;
         _requestAdReject = reject;
 
-        _asInterstitial = [[ASInterstitial alloc] initWithAdUnitID:adUnitID];
+        if (_gadAdUnitID != nil) {
+            _asInterstitial = [[ASInterstitial alloc] initWithAdUnitID:_adUnitID gadAdUnitID:_gadAdUnitID];
+        } else {
+            _asInterstitial = [[ASInterstitial alloc] initWithAdUnitID:_adUnitID];
+        }
         _asInterstitial.delegate = self;
 
         ASAdRequest *adRequest = [[ASAdRequest alloc] init];
-        request.testDevices = _testDevices;
+        adRequest.testDevices = _testDevices;
         [_asInterstitial loadAdWithAdRequest:adRequest];
     } else {
         reject(@"E_AD_ALREADY_LOADED", @"Ad is already loaded.", nil);

@@ -24,6 +24,8 @@
         UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
         UIViewController *rootViewController = [keyWindow rootViewController];
         _bannerView = [[ASBannerView alloc] initWithAdSize:ASAdSize.asAdSizeBanner];
+        _bannerView.adUnitID = _adUnitID;
+        _bannerView.gadAdUnitID = _gadAdUnitID;
         _bannerView.delegate = self;
         _bannerView.rootViewController = rootViewController;
         [self addSubview:_bannerView];
@@ -55,7 +57,7 @@
   [_bannerView loadAdWithAdRequest:request];
 }
 
-- (void)setTestDevices:(NSArray *)testDevices { 
+- (void)setTestDevices:(NSArray *)testDevices {
   _testDevices = testDevices;
 }
 

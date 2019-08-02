@@ -38,7 +38,8 @@ class RNAppSamuraiInterstitialAdModule(reactContext: ReactApplicationContext) : 
 
     private var mInterstitialAd: InterstitialAd? = null
 
-    private var adUnitIDs = HashMap<AdNetwork, String>()
+    private var adUnitID: String? = null
+    private var gadAdUnitID: String? = null
     private var testDevices: ArrayList<String> = arrayListOf()
     private var mRequestAdPromise: Promise? = null
 
@@ -51,8 +52,13 @@ class RNAppSamuraiInterstitialAdModule(reactContext: ReactApplicationContext) : 
     }
 
     @ReactMethod
-    fun setAdUnitIDs(adUnitIDs: ReadableMap) {
-        this.adUnitIDs = Utils.convertAdUnitIdMap(adUnitIDs)
+    fun setAdUnitID(adUnitID: String) {
+        this.adUnitID = adUnitID
+    }
+
+    @ReactMethod
+    fun setGADAdUnitID(gadAdUnitID: String) {
+        this.gadAdUnitID = gadAdUnitID
     }
 
     @ReactMethod
@@ -106,7 +112,7 @@ class RNAppSamuraiInterstitialAdModule(reactContext: ReactApplicationContext) : 
                     adRequestBuilder.addTestDevice(testDevice)
                 }
                 val adRequest = adRequestBuilder.build()
-                mInterstitialAd?.adUnitIds = adUnitIDs
+                mInterstitialAd?.adUnitIds = createAdUnitIdMap(adUnitId = adUnitID, gadAdUnitId = gadAdUnitID)
                 mInterstitialAd?.loadAd(adRequest)
             }
         }

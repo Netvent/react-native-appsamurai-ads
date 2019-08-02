@@ -28,8 +28,7 @@ import {
 import {
   AppSamuraiBanner,
   AppSamuraiRewarded,
-  AppSamuraiInterstitial,
-  AdNetwork
+  AppSamuraiInterstitial
 } from 'react-native-appsamurai-ads';
 
 
@@ -92,12 +91,6 @@ export default class App extends Component<{}> {
                 onAdFailedToLoad={()=> {
                   this.setLog('AppSamuraiBanner onAdFailedToLoad');
                 }}
-                onAdOpened={()=> {
-                  this.setLog('AppSamuraiBanner onAdOpened');
-                }}
-                onAdClosed={()=> {
-                  this.setLog('AppSamuraiBanner onAdClosed');
-                }}
                 onAdLeftApplication={()=> {
                   this.setLog('AppSamuraiBanner onAdLeftApplication');
                 }}
@@ -114,19 +107,15 @@ export default class App extends Component<{}> {
   }
 
   loadInterstitial = () => {
-    var adUnitIDs = {
-      [AdNetwork.APPSAMURAI]: 'appsamurai-sample-android-interstitial-ad-id',
-      [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/1033173712',
-    };
     var testDeviceIDs = [
-      '026A278EFB88853437C158A1AB023B9E',
-      'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
-      'test-device-id-3'
+        'test-device-id-1',
+        'test-device-id-2',
+        'test-device-id-3'
     ];
 
     AppSamuraiInterstitial.setTestDevices(testDeviceIDs);
-
-    AppSamuraiInterstitial.setAdUnitIDs(adUnitIDs);
+    AppSamuraiInterstitial.setAdUnitID('appsamurai-sample-android-interstitial-ad-id');
+    AppSamuraiInterstitial.setGADAdUnitID('ca-app-pub-3940256099942544/1033173712');
     AppSamuraiInterstitial.addEventListener('adLoaded',
       () => this.setLog('AppSamuraiInterstitial adLoaded')
     );
@@ -159,19 +148,15 @@ export default class App extends Component<{}> {
   }
 
   loadRewarded = () => {
-    var adUnitIDs = {
-      [AdNetwork.APPSAMURAI]: 'appsamurai-sample-android-rewardbasedvideo-ad-id',
-      [AdNetwork.GOOGLE]: 'ca-app-pub-3940256099942544/5224354917'
-    };
-
     var testDeviceIDs = [
-      '026A278EFB88853437C158A1AB023B9E',
-      'YXBwc20tNzliNDU5YzVlZWM3NzA4Zg==',
+      'test-device-id-1',
+      'test-device-id-2',
       'test-device-id-3'
     ];
 
     AppSamuraiRewarded.setTestDevices(testDeviceIDs);
-    AppSamuraiRewarded.setAdUnitIDs(adUnitIDs);
+    AppSamuraiRewarded.setAdUnitID('appsamurai-sample-android-rewardbasedvideo-ad-id');
+    AppSamuraiRewarded.setGADAdUnitID('ca-app-pub-3940256099942544/5224354917');
     AppSamuraiRewarded.addEventListener('adLoaded',
       () => this.setLog('AppSamuraiRewarded adLoaded')
     );
