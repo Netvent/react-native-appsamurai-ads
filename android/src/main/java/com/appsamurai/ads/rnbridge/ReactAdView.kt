@@ -22,9 +22,6 @@ class ReactAdView(context: Context) : ReactViewGroup(context) {
     private var mBannerAd: BannerAd? = null
 
     var adUnitID: String? = null
-        set(value) {
-            field = value
-        }
     var gadAdUnitID: String? = null
     var testDevices: Array<String> = arrayOf()
     var adSize = AdSize.BANNER
@@ -36,7 +33,7 @@ class ReactAdView(context: Context) : ReactViewGroup(context) {
 
     private fun createContainer(context: Context) {
         adContainer = LinearLayout(context)
-        val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val params = LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         //        params.gravity = Gravity.CENTER_HORIZONTAL;
         adContainer.layoutParams = params
         adContainer.setBackgroundColor(Color.CYAN)
@@ -78,13 +75,6 @@ class ReactAdView(context: Context) : ReactViewGroup(context) {
                 sendEvent(RNAppSamuraiBannerViewManager.EVENT_AD_OPENED, null)
             }
 
-            override fun onAdExpanded() {
-                super.onAdExpanded()
-            }
-
-            override fun onAdCollapsed() {
-                super.onAdCollapsed()
-            }
         })
         this.addView(this.adContainer)
     }
@@ -110,21 +100,13 @@ class ReactAdView(context: Context) : ReactViewGroup(context) {
     }
 
     fun loadBanner() {
-        val map = HashMap<AdNetwork, String>()
-        adUnitID?.let {
-            map[AdNetwork.APPSAMURAI] = it
-        }
-        gadAdUnitID?.let {
-            map[AdNetwork.GOOGLE] = it
-        }
-        this.mBannerAd?.adUnitIds = map
+        this.mBannerAd?.adUnitIds = createAdUnitIdMap(adUnitId = adUnitID, gadAdUnitId = gadAdUnitID)
         this.mBannerAd?.adSize = adSize
         val adRequestBuilder = AdRequest.Builder()
         for (testDevice in testDevices) {
             adRequestBuilder.addTestDevice(testDevice)
         }
         val adRequest = adRequestBuilder.build()
-        Log.d(Utils.LOGTAG, "TestDevices ${adRequest.testDevices}")
         this.mBannerAd?.loadAd(adRequest)
     }
 }

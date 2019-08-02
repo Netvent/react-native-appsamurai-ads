@@ -30,7 +30,8 @@ class RNAppSamuraiRewardedVideoAdModule(reactContext: ReactApplicationContext) :
 
     private var mRewardedAd: RewardedAd? = null
 
-    private var adUnitIDs = HashMap<AdNetwork, String>()
+    private var adUnitID: String? = null
+    private var gadAdUnitID: String? = null
     private var testDevices: ArrayList<String> = arrayListOf()
     private var mRequestAdPromise: Promise? = null
 
@@ -44,8 +45,13 @@ class RNAppSamuraiRewardedVideoAdModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    fun setAdUnitIDs(adUnitIDs: ReadableMap) {
-        this.adUnitIDs = Utils.convertAdUnitIdMap(adUnitIDs)
+    fun setAdUnitID(adUnitID: String) {
+        this.adUnitID = adUnitID
+    }
+
+    @ReactMethod
+    fun setGADAdUnitID(gadAdUnitID: String) {
+        this.gadAdUnitID = gadAdUnitID
     }
 
     @ReactMethod
@@ -128,7 +134,7 @@ class RNAppSamuraiRewardedVideoAdModule(reactContext: ReactApplicationContext) :
                 }
 
                 val adRequest = adRequestBuilder.build()
-                mRewardedAd?.adUnitIds = adUnitIDs
+                mRewardedAd?.adUnitIds = createAdUnitIdMap(adUnitId = adUnitID, gadAdUnitId = gadAdUnitID)
                 mRewardedAd?.loadAd(adRequest)
             }
         }
