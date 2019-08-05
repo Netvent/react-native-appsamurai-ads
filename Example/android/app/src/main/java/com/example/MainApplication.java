@@ -52,6 +52,5 @@ public class MainApplication extends Application implements ReactApplication {
     appIdMap.put(AdNetwork.APPSAMURAI, "appsamurai-sample-android-app-id");
 
     MobileAds.Companion.initialize(this, appIdMap);
-
   }
 }
