@@ -4,7 +4,7 @@
   "description": "A react-native component for AppSamurai Ads",
   "author": "App Samurai Mobile Team <mobile@appsamurai.com>",
   "main": "index.js",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "private": false,
   "homepage": "https://github.com/Netvent/react-native-appsamurai-ads",
   "repository": {
