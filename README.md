@@ -3,18 +3,18 @@ React Native App Samurai Ads is a project for React Native to enable usage of Ap
 ## Native AppSamurai Ad SDKs
 App Samurai Ads has native SDKs both for iOS and Android.
 ### iOS
-[`AppSamurai Ads iOS SDK`](_https://github.com/Netvent/appsamurai-adsdk-ios_)
+[`AppSamurai Ads iOS SDK`](https://github.com/Netvent/appsamurai-adsdk-ios)
 ### Android
-[`AppSamurai Ads Android SDK`](_https://github.com/Netvent/appsamurai-adsdk-android_)
+[`AppSamurai Ads Android SDK`](https://github.com/Netvent/appsamurai-adsdk-android)
 ## Getting Started
 Add react-native-appsamurai-ads to your dependencies with one of the options below(yarn or npm);
 ``` shell
 yarn add react-native-appsamurai-ads
 ```
 ``` shell
-npm -install --save react-native-appsamurai-ads
+npm install --save react-native-appsamurai-ads
 ```
-Linking library
+*Linking library*
 react-native 0.60+ handles autolinking as it mentioned in [autolinking in react-native](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md).
 For react-native 0.60- version auto linking needs to be done to use libraries with native dependencies correctly. Please refer detailed explanation from [Linking Libraries in iOS](https://facebook.github.io/react-native/docs/linking-libraries-ios.html)
 ``` shell
@@ -22,17 +22,17 @@ react-native link react-native-appsamurai-ads
 ```
 ### iOS Platform Notes
 Projects that use CocoaPods do not forget to run `pod install`
----
-You need to initialize ASMobileAds to use App Samurai Ads. Application’s `didFinishLaunchingWithOptions` method related parts;
+
+You need to initialize ASMobileAds to use App Samurai Ads. You need to add to application’s `didFinishLaunchingWithOptions` method following snippet;
 ```objc
 [ASMobileAds initialize:@"appsamurai-sample-ios-app-id"];
 ```
-You need you import related modules as well;
+You need to import related modules as well;
 ```objc
 @import AppSamuraiAdSDK;
 ```
 ### Android Platform Notes
-You need to add `multidex` support to Android project. You can do this by adding following line to app’s gradle.
+You need to add `multidex` support to your Android project. You can do this by adding following line to app’s gradle.
 ```groovy
 defaultConfig {
     ....
@@ -40,15 +40,13 @@ defaultConfig {
     ...
 }
 ```
----
+
 This is a Waterfall SDK that uses Google AdMob to increase publisher’s fill rate. You need to handle Google AdMob initialization process as well, please follow guides on [Google AdMob Update your AndroidManifest.xml](https://developers.google.com/admob/android/quick-start#update_your_androidmanifestxml) documentation.
----
-You need to initialize ASMobileAds to use App Samurai Ads. Application’s `onCreate` method related parts;
+You need to initialize ASMobileAds to use App Samurai Ads. You need to add to application’s `onCreate` method following snippet's related parts;
 ```java
 @Override
 public void onCreate() {
     super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
     // initialize MobileAds with suitable parameters
     HashMap<AdNetwork, String> appIdMap = new HashMap<>();
     appIdMap.put(AdNetwork.GOOGLE, "ca-app-pub-3940256099942544~3347511713");
